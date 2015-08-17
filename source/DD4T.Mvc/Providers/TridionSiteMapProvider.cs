@@ -8,7 +8,6 @@
     using System.Xml.Linq;
     using System.Collections;
     using DD4T.Factories;
-    using DD4T.Utils;
     using DD4T.ContentModel.Contracts.Caching;
     using DD4T.Factories.Caching;
     using DD4T.ContentModel.Contracts.Logging;

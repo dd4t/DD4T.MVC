@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web;
 using DD4T.ContentModel;
-using DD4T.Utils;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -9,7 +8,6 @@ using System.Drawing.Drawing2D;
 using System.Text.RegularExpressions;
 using DD4T.ContentModel.Exceptions;
 using DD4T.ContentModel.Contracts.Caching;
-using DD4T.Factories;
 using DD4T.ContentModel.Factories;
 using System.Web.Mvc;
 using DD4T.ContentModel.Contracts.Logging;

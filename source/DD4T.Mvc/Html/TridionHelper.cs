@@ -1,6 +1,5 @@
 ﻿using System.Web.Mvc;
 using DD4T.ContentModel;
-using DD4T.Utils;
 using DD4T.ContentModel.Contracts.Logging;
 using System.Text.RegularExpressions;
 using DD4T.Factories;

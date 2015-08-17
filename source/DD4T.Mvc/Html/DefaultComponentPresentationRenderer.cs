@@ -3,7 +3,6 @@ using System.Text;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 using DD4T.ContentModel;
-using DD4T.Utils;
 using DD4T.ContentModel.Contracts.Logging;
 using System;
 using DD4T.ContentModel.Contracts.Configuration;

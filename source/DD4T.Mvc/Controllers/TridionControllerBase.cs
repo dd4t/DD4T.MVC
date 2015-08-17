@@ -5,7 +5,6 @@ using DD4T.Mvc.Html;
 using System.Web;
 using System.IO;
 using System.Security;
-using DD4T.Utils;
 using DD4T.ContentModel.Contracts.Logging;
 using DD4T.ContentModel.Factories;
 using System;
