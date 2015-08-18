@@ -12,6 +12,7 @@
     <tags>SDLTridion Tridion DD4T MVC MVC4</tags>
     <dependencies>
       <dependency id="DD4T.Core" version="2.0.0" />
+      <dependency id="Microsoft.AspNet.Mvc" version="4.0.40804.0" />
     </dependencies>
   </metadata>
 </package>
