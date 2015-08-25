@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{35820835-66A8-4D5B-9FC0-0943EC0AA307}</ProjectGuid>
+    <ProjectGuid>{F27C25A0-56DC-4413-B804-551DAFBC1B5D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DD4T.MVC</RootNamespace>
-    <AssemblyName>DD4T.MVC</AssemblyName>
+    <RootNamespace>DD4T.Web.MVC4</RootNamespace>
+    <AssemblyName>DD4T.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <RestorePackages>true</RestorePackages>
     <TargetFrameworkProfile />
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,11 +44,11 @@
       <HintPath>..\packages\DD4T.Model.2.0.3-alpha27\lib\net45\DD4T.ContentModel.XmlSerializers.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.Core.Contracts, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DD4T.Core.Contracts">
       <HintPath>..\packages\DD4T.Core.2.0.0-alpha28\lib\net45\DD4T.Core.Contracts.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.Factories, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DD4T.Factories">
       <HintPath>..\packages\DD4T.Core.2.0.0-alpha28\lib\net45\DD4T.Factories.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -56,12 +56,16 @@
       <HintPath>..\packages\DD4T.Model.2.0.3-alpha27\lib\net45\DD4T.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.Utils, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="DD4T.Utils">
       <HintPath>..\packages\DD4T.Core.2.0.0-alpha28\lib\net45\DD4T.Utils.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -102,88 +106,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\DD4T.MVC\Attributes\UsesTridionPage.cs">
-      <Link>Attributes\UsesTridionPage.cs</Link>
+    <Compile Include="..\dd4t.web\binaries\BinaryDistributionModule.cs">
+      <Link>Binaries\BinaryDistributionModule.cs</Link>
     </Compile>
-    <Compile Include="..\DD4T.MVC\Caching\SchemaComponentsCacheDependency.cs">
-      <Link>Caching\SchemaComponentsCacheDependency.cs</Link>
+    <Compile Include="..\dd4t.web\binaries\BinaryFileManager.cs">
+      <Link>Binaries\BinaryFileManager.cs</Link>
     </Compile>
-    <Compile Include="..\DD4T.MVC\Caching\SitemapCacheDependency.cs">
-      <Link>Caching\SitemapCacheDependency.cs</Link>
+    <Compile Include="..\dd4t.web\binaries\IBinaryFileManager.cs">
+      <Link>Binaries\IBinaryFileManager.cs</Link>
     </Compile>
-    <Compile Include="..\DD4T.MVC\Caching\WebCacheAgent.cs">
-      <Link>Caching\WebCacheAgent.cs</Link>
+    <Compile Include="..\dd4t.web\resourcemanagement\DynamicResourceManagement.cs">
+      <Link>ResourceManagement\DynamicResourceManagement.cs</Link>
     </Compile>
-    <Compile Include="..\DD4T.MVC\Controllers\IComponentController.cs">
-      <Link>Controllers\IComponentController.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Controllers\IComponentPresentationController.cs">
-      <Link>Controllers\IComponentPresentationController.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Controllers\IPageController.cs">
-      <Link>Controllers\IPageController.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Controllers\TridionControllerBase.cs">
-      <Link>Controllers\TridionControllerBase.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\FactoryService.cs">
-      <Link>FactoryService.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Html\DefaultComponentPresentationRenderer.cs">
-      <Link>Html\DefaultComponentPresentationRenderer.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Html\IComponentPresentationRenderer.cs">
-      <Link>Html\IComponentPresentationRenderer.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Html\ImageHelper.cs">
-      <Link>Html\ImageHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Html\RichTextHelper.cs">
-      <Link>Html\RichTextHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Html\SiteEditHelper.cs">
-      <Link>Html\SiteEditHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Html\TridionHelper.cs">
-      <Link>Html\TridionHelper.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Providers\TridionSiteMapNode.cs">
-      <Link>Providers\TridionSiteMapNode.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\Providers\TridionSiteMapProvider.cs">
-      <Link>Providers\TridionSiteMapProvider.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\ServiceLocator.cs">
-      <Link>ServiceLocator.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\SiteEdit\SiteEditService.cs">
-      <Link>SiteEdit\SiteEditService.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\SiteEdit\SiteEditSettings.cs">
-      <Link>SiteEdit\SiteEditSettings.cs</Link>
-    </Compile>
-    <Compile Include="..\DD4T.MVC\SiteLogger.cs">
-      <Link>SiteLogger.cs</Link>
-    </Compile>
-    <Compile Include="..\dd4t solution items\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo</Link>
-    </Compile>
-    <Compile Include="Properties\SpecificAssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Modules\" />
-    <Folder Include="Views\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\DD4T.Web.MVC4\DD4T.Web.MVC4.csproj">
-      <Project>{f27c25a0-56dc-4413-b804-551dafbc1b5d}</Project>
-      <Name>DD4T.Web.MVC4</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -199,11 +137,5 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
-  <Import Project="..\..\DD4T MVC.Targets" />
-  <Target Name="AfterBuild">
-    <CallTarget Targets="Package" />
-    <Message Text="Installing package to local NuGet repo" Importance="high" Condition="'$(NUGET_LOCALREPO)' != ''" />
-    <CallTarget Targets="Install" Condition="'$(NUGET_LOCALREPO)' != ''" />
   </Target>
 </Project>
