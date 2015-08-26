@@ -166,7 +166,7 @@
       <Link>SiteLogger.cs</Link>
     </Compile>
     <Compile Include="..\dd4t solution items\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo</Link>
+      <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\SpecificAssemblyInfo.cs" />
   </ItemGroup>
