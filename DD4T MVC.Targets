@@ -3,6 +3,8 @@
 	<PropertyGroup>
 		<Configuration Condition="'$(Configuration)'==''">Debug</Configuration>
 		<ProductName>$(MSBuildProjectName)</ProductName>
+		<MVCVersion>MVC5</MVCVersion>
+		<MVCVersion Condition="'$(ProductName)' == 'DD4T.MVC4'">MVC4</MVCVersion>
 
 		<!-- Source Directories -->
 		<BaseDirectory Condition="'$(BaseDirectory)' == ''">$(MSBuildProjectDirectory)</BaseDirectory>
@@ -12,7 +14,7 @@
 		
 		<!-- Build Directories -->
 		<BuildOutputDirectory>$(BaseDirectory)\build</BuildOutputDirectory>
-		<BuildBinDirectory>$(BuildOutputDirectory)\bin</BuildBinDirectory>
+		<BuildBinDirectory>$(BuildOutputDirectory)\$(MVCVersion)\bin</BuildBinDirectory>
 		<BuildDocDirectory>$(BuildOutputDirectory)\doc</BuildDocDirectory>
 		<BuildLogDirectory>$(BuildOutputDirectory)\log</BuildLogDirectory>
 		<BuildPackageDirectory>$(BuildOutputDirectory)\package\$(ProductName)</BuildPackageDirectory>
