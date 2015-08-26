@@ -22,7 +22,7 @@ namespace DD4T.Mvc.ViewModels.XPM
     {
         //This is just an OO implementation of the static extension methods... which one is better
         private readonly IViewModel model;
-        private readonly IComponentPresentation contentData = null;
+        private readonly IEmbeddedFields contentData = null;
         private readonly IXpmMarkupService xpmMarkupService;
         private readonly IViewModelResolver resolver;
         public XpmRenderer(IViewModel model, IXpmMarkupService service, IViewModelResolver resolver)
@@ -31,9 +31,9 @@ namespace DD4T.Mvc.ViewModels.XPM
             if (service == null) throw new ArgumentNullException("service");
             if (resolver == null) throw new ArgumentNullException("resolver");
             this.model = model;
-            if (model.ModelData is IComponentPresentation)
+            if (model.ModelData is IEmbeddedFields)
             {
-                contentData = model.ModelData as IComponentPresentation;
+                contentData = model.ModelData as IEmbeddedFields;
             }
             this.xpmMarkupService = service;
             this.resolver = resolver;
@@ -176,9 +176,8 @@ namespace DD4T.Mvc.ViewModels.XPM
             bool result = false;
             if (model != null && model.ModelData != null)
             {
-                //Todo: Sia
-                //result = XpmMarkupService.IsSiteEditEnabled(model.ModelData.PublicationNumber);
-                result = XpmMarkupService.IsSiteEditEnabled(0);
+                var pubId = new TcmUri(contentData.Component.Id).PublicationId;
+                result = XpmMarkupService.IsSiteEditEnabled(pubId);
             }
             return result;
         }

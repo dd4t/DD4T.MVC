@@ -11,7 +11,7 @@ using DD4T.ContentModel;
 using DD4T.Core.Contracts.ViewModels;
 using System;
 
-namespace DD4T.MVC.ViewModels.Attributes
+namespace DD4T.Mvc.ViewModels.Attributes
 {
     /// <summary>
     /// An Attribute for a Property representing the Link Resolved URL for a Linked or Multimedia Component
