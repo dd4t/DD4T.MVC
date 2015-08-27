@@ -22,7 +22,8 @@ namespace DD4T.Mvc.ViewModels.XPM
     {
         //This is just an OO implementation of the static extension methods... which one is better
         private readonly IViewModel model;
-        private readonly IEmbeddedFields contentData = null;
+        //private readonly IComponentPresentation contentData = null;
+        private readonly IModel contentModel = null;
         private readonly IXpmMarkupService xpmMarkupService;
         private readonly IViewModelResolver resolver;
         public XpmRenderer(IViewModel model, IXpmMarkupService service, IViewModelResolver resolver)
@@ -31,13 +32,35 @@ namespace DD4T.Mvc.ViewModels.XPM
             if (service == null) throw new ArgumentNullException("service");
             if (resolver == null) throw new ArgumentNullException("resolver");
             this.model = model;
-            if (model.ModelData is IEmbeddedFields)
+            if (model.ModelData is IModel)
             {
-                contentData = model.ModelData as IEmbeddedFields;
+                contentModel = model.ModelData as IModel;
             }
+            //if (model.ModelData is IComponentPresentation)
+            //{
+            //    contentData = model.ModelData as IComponentPresentation;
+            //}
+
             this.xpmMarkupService = service;
             this.resolver = resolver;
         }
+
+        private IFieldSet resolveFields(IModel model, bool isMetadata)
+        {
+            IFieldSet fields = null;
+            if(model is IComponentPresentation)
+            {
+                var cp = model as IComponentPresentation;
+                fields =  isMetadata ? cp.Component.MetadataFields : cp.Component.Fields;
+            }
+            else if(model is IEmbeddedFields)
+            {
+                var emb = model as IEmbeddedFields;
+                fields = emb.Fields;
+            }
+            return fields;
+        }
+
         /// <summary>
         /// Gets or sets the XPM Markup Service used to render the XPM Markup for the XPM extension methods
         /// </summary>
@@ -62,7 +85,8 @@ namespace DD4T.Mvc.ViewModels.XPM
             if (modelProp.PropertyAttribute is IFieldAttribute)
             {
                 var fieldProp = modelProp.PropertyAttribute as IFieldAttribute;
-                var fields = fieldProp.IsMetadata ? contentData.Component.MetadataFields : contentData.Component.Fields;
+                //var fields = fieldProp.IsMetadata ? contentData.Component.MetadataFields : contentData.Component.Fields;
+                var fields = resolveFields(contentModel, fieldProp.IsMetadata);
                 result = SiteEditable<TProp>(model, fields, modelProp, index);
             }
             return result;
@@ -90,7 +114,8 @@ namespace DD4T.Mvc.ViewModels.XPM
             if (modelProp.PropertyAttribute is IFieldAttribute)
             {
                 var fieldProp = modelProp.PropertyAttribute as IFieldAttribute;
-                var fields = fieldProp.IsMetadata ? contentData.Component.MetadataFields : contentData.Component.Fields;
+                //var fields = fieldProp.IsMetadata ? contentData.Component.MetadataFields : contentData.Component.Fields;
+                var fields = resolveFields(contentModel, fieldProp.IsMetadata);
                 int index = IndexOf(modelProp, model, item);
                 result = SiteEditable<TProp>(model, fields, modelProp, index);
             }
@@ -115,7 +140,8 @@ namespace DD4T.Mvc.ViewModels.XPM
                 if (modelProp.PropertyAttribute is IFieldAttribute)
                 {
                     var fieldProp = modelProp.PropertyAttribute as IFieldAttribute;
-                    var fields = fieldProp.IsMetadata ? contentData.Component.MetadataFields : contentData.Component.Fields;
+                    //var fields = fieldProp.IsMetadata ? contentData.Component.MetadataFields : contentData.Component.Fields;
+                    var fields = resolveFields(contentModel, fieldProp.IsMetadata);
                     result = XpmMarkupFor(fields, modelProp, index);
                 }
             }
@@ -148,7 +174,8 @@ namespace DD4T.Mvc.ViewModels.XPM
                 if (modelProp.PropertyAttribute is IFieldAttribute)
                 {
                     var fieldProp = modelProp.PropertyAttribute as IFieldAttribute;
-                    var fields = fieldProp.IsMetadata ? contentData.Component.MetadataFields : contentData.Component.Fields;
+                    //var fields = fieldProp.IsMetadata ? contentData.Component.MetadataFields : contentData.Component.Fields;
+                    var fields = resolveFields(contentModel, fieldProp.IsMetadata);
                     int index = IndexOf(modelProp, model, item);
                     result = XpmMarkupFor(fields, modelProp, index);
                 }
@@ -176,8 +203,16 @@ namespace DD4T.Mvc.ViewModels.XPM
             bool result = false;
             if (model != null && model.ModelData != null)
             {
-                var pubId = new TcmUri(contentData.Component.Id).PublicationId;
-                result = XpmMarkupService.IsSiteEditEnabled(pubId);
+                TcmUri tcmUri = TcmUri.NullUri;
+                if(contentModel is IComponentPresentation)
+                {
+                    tcmUri = new TcmUri((contentModel as IComponentPresentation).Component.Id);
+                }
+                else if(contentModel is IEmbeddedFields)
+                {
+                    tcmUri = new TcmUri((contentModel as IEmbeddedFields).EmbeddedSchema.Id);
+                }
+                result = XpmMarkupService.IsSiteEditEnabled(tcmUri.PublicationId);
             }
             return result;
         }
