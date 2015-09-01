@@ -112,7 +112,7 @@ namespace DD4T.Mvc.Html
             _logger.Debug("finished calling renderer.ComponentPresentations", LoggingCategory.Performance);
             _logger.Information("<<RenderComponentPresentations", LoggingCategory.Performance);
 
-            return null;
+            return output;
         }
 
         #region linking functionality
