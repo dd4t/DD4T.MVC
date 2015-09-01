@@ -12,6 +12,7 @@ using System.Collections;
 using DD4T.ViewModels;
 using DD4T.ContentModel;
 using DD4T.MVC.ViewModels.XPM;
+using System.Web.Mvc;
 
 namespace DD4T.Mvc.ViewModels.XPM
 {
@@ -21,7 +22,8 @@ namespace DD4T.Mvc.ViewModels.XPM
     public static class XpmExtensions
     {
         private static IXpmMarkupService xpmMarkupService = new XpmMarkupService();
-        private static IViewModelResolver resolver = ViewModelDefaults.ModelResolver;
+        private static IViewModelResolver resolver = DependencyResolver.Current.GetService<IViewModelResolver>();
+        private static IReflectionHelper reflectionHelper = DependencyResolver.Current.GetService<IReflectionHelper>();
         /// <summary>
         /// Gets or sets the XPM Markup Service used to render the XPM Markup for the XPM extension methods
         /// </summary>
@@ -42,7 +44,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <returns>XPM Markup and field value</returns>
         public static HtmlString XpmEditableField<TModel, TProp>(this TModel model, Expression<Func<TModel, TProp>> propertyLambda, int index = -1) where TModel : IViewModel
         {
-            var renderer = new XpmRenderer<TModel>(model, XpmMarkupService, resolver);
+            var renderer = new XpmRenderer<TModel>(model, XpmMarkupService, resolver, reflectionHelper);
             return renderer.XpmEditableField(propertyLambda, index);
         }
         /// <summary>
@@ -64,7 +66,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         public static HtmlString XpmEditableField<TModel, TProp, TItem>(this TModel model, Expression<Func<TModel, TProp>> propertyLambda, TItem item)
             where TModel : IViewModel
         {
-            var renderer = new XpmRenderer<TModel>(model, XpmMarkupService, resolver);
+            var renderer = new XpmRenderer<TModel>(model, XpmMarkupService, resolver, reflectionHelper);
             return renderer.XpmEditableField(propertyLambda, item);
         }
         /// <summary>
@@ -78,7 +80,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <returns>XPM Markup</returns>
         public static HtmlString XpmMarkupFor<TModel, TProp>(this TModel model, Expression<Func<TModel, TProp>> propertyLambda, int index = -1) where TModel : IViewModel
         {
-            var renderer = new XpmRenderer<TModel>(model, XpmMarkupService, resolver);
+            var renderer = new XpmRenderer<TModel>(model, XpmMarkupService, resolver, reflectionHelper);
             return renderer.XpmMarkupFor(propertyLambda, index);
         }
         /// <summary>
@@ -101,7 +103,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         public static HtmlString XpmMarkupFor<TModel, TProp, TItem>(this TModel model, Expression<Func<TModel, TProp>> propertyLambda, TItem item)
             where TModel : IViewModel
         {
-            var renderer = new XpmRenderer<TModel>(model, XpmMarkupService, resolver);
+            var renderer = new XpmRenderer<TModel>(model, XpmMarkupService, resolver, reflectionHelper);
             return renderer.XpmMarkupFor(propertyLambda, item);
         }
         /// <summary>
@@ -115,7 +117,7 @@ namespace DD4T.Mvc.ViewModels.XPM
             HtmlString result = null;
             if (model.ModelData is IComponentPresentation)
             {
-                var renderer = new XpmRenderer<IViewModel>(model, XpmMarkupService, resolver);
+                var renderer = new XpmRenderer<IViewModel>(model, XpmMarkupService, resolver, reflectionHelper);
                 result = renderer.StartXpmEditingZone(region);
             }
             return result;

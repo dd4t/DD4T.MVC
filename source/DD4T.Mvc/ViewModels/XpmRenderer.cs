@@ -11,6 +11,7 @@ using System.Reflection;
 using DD4T.ViewModels;
 using DD4T.ContentModel;
 using DD4T.MVC.ViewModels.XPM;
+using System.Web.Mvc;
 
 namespace DD4T.Mvc.ViewModels.XPM
 {
@@ -26,11 +27,13 @@ namespace DD4T.Mvc.ViewModels.XPM
         private readonly IModel contentModel = null;
         private readonly IXpmMarkupService xpmMarkupService;
         private readonly IViewModelResolver resolver;
-        public XpmRenderer(IViewModel model, IXpmMarkupService service, IViewModelResolver resolver)
+        private readonly IReflectionHelper reflectionHelper;
+        public XpmRenderer(IViewModel model, IXpmMarkupService service, IViewModelResolver resolver, IReflectionHelper reflectionHelper)
         {
             if (model == null) throw new ArgumentNullException("model");
             if (service == null) throw new ArgumentNullException("service");
             if (resolver == null) throw new ArgumentNullException("resolver");
+            if (reflectionHelper == null) throw new ArgumentNullException("reflectionHelper");
             this.model = model;
             if (model.ModelData is IModel)
             {
@@ -40,7 +43,7 @@ namespace DD4T.Mvc.ViewModels.XPM
             //{
             //    contentData = model.ModelData as IComponentPresentation;
             //}
-
+            this.reflectionHelper = reflectionHelper;
             this.xpmMarkupService = service;
             this.resolver = resolver;
         }
@@ -244,7 +247,8 @@ namespace DD4T.Mvc.ViewModels.XPM
         }
         private IModelProperty GetModelProperty<TProp>(Expression<Func<TModel, TProp>> propertyLambda)
         {
-            PropertyInfo property = ViewModelDefaults.ReflectionCache.GetPropertyInfo(propertyLambda);
+
+            PropertyInfo property = reflectionHelper.GetPropertyInfo(propertyLambda);
             return GetModelProperty(typeof(TModel), property);
         }
         private HtmlString SiteEditable<TProp>(IViewModel model, IFieldSet fields, IModelProperty fieldProp, int index)
