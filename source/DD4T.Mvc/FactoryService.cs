@@ -39,6 +39,7 @@ namespace DD4T.Mvc
             }
         }
 
+     
         public static ITaxonomyFactory TaxonomyFactory
         {
             get
