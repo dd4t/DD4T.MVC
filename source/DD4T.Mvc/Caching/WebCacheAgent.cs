@@ -2,7 +2,7 @@
 using DD4T.ContentModel.Contracts.Caching;
 using System.Web.Caching;
 using System.Web;
-
+using System;
 
 namespace DD4T.Factories.Caching
 {
@@ -13,8 +13,6 @@ namespace DD4T.Factories.Caching
 
     public class WebCacheAgent : ICacheAgent
     {
-        public GetLastPublishDate GetLastPublishDateCallBack { get; set; }
-
         private Cache Cache
         {
             get
@@ -25,6 +23,11 @@ namespace DD4T.Factories.Caching
         public object Load(string key)
         {
             return Cache[key];
+        }
+
+        public void Remove(string key)
+        {
+            Cache.Remove(key);
         }
 
         /// <summary>

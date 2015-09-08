@@ -39,14 +39,7 @@ namespace DD4T.Mvc
             }
         }
 
-        public static IModelFactory ModelFactory
-        {
-            get
-            {
-                return ServiceLocator.GetInstance<IModelFactory>();
-            }
-        }
-
+     
         public static ITaxonomyFactory TaxonomyFactory
         {
             get
