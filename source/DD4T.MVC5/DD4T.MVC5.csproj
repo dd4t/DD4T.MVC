@@ -46,11 +46,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Core.Contracts, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-alpha44\lib\net45\DD4T.Core.Contracts.dll</HintPath>
+      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911162754\lib\net45\DD4T.Core.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DD4T.Factories, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-alpha44\lib\net45\DD4T.Factories.dll</HintPath>
+      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911162754\lib\net45\DD4T.Factories.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DD4T.Serialization">
@@ -58,11 +58,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Utils, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-alpha44\lib\net45\DD4T.Utils.dll</HintPath>
+      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911162754\lib\net45\DD4T.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="DD4T.ViewModels, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-alpha44\lib\net45\DD4T.ViewModels.dll</HintPath>
+    <Reference Include="DD4T.ViewModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911162754\lib\net45\DD4T.ViewModels.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -146,6 +146,9 @@
     </Compile>
     <Compile Include="..\dd4t.mvc\html\ImageHelper.cs">
       <Link>Html\ImageHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\Html\RenderHelper.cs">
+      <Link>Html\RenderHelper.cs</Link>
     </Compile>
     <Compile Include="..\dd4t.mvc\html\RichTextHelper.cs">
       <Link>Html\RichTextHelper.cs</Link>

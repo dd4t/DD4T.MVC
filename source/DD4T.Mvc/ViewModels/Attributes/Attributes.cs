@@ -10,6 +10,9 @@ using System.Collections;
 using DD4T.ContentModel;
 using DD4T.Core.Contracts.ViewModels;
 using System;
+using DD4T.ViewModels;
+using System.Text.RegularExpressions;
+using DD4T.ContentModel.Contracts.Configuration;
 
 namespace DD4T.Mvc.ViewModels.Attributes
 {
@@ -54,5 +57,85 @@ namespace DD4T.Mvc.ViewModels.Attributes
         }
     }
 
+    public class RenderDataAttribute : ModelPropertyAttributeBase
+    {
+        private IDD4TConfiguration DD4TConfiguration { get; set; }
 
+        public RenderDataAttribute()
+        {
+            DD4TConfiguration = DependencyResolver.Current.GetService<IDD4TConfiguration>();
+        }
+        private string DefaultController
+        {
+            get
+            {
+                return DD4TConfiguration.ComponentPresentationController;
+            }
+        }
+        private string DefaultControllerAction
+        {
+            get
+            {
+                return DD4TConfiguration.ComponentPresentationAction;
+            }
+        }
+        public override IEnumerable GetPropertyValues(IModel modelData, IModelProperty property, IViewModelFactory factory)
+        {
+            // escape
+            if (modelData == null) return null;
+
+            ITemplate template = null;
+            if (modelData is IComponentPresentation)
+            {
+                template = ((IComponentPresentation)modelData).ComponentTemplate;
+            }
+            else if (modelData is IPage)
+            {
+                template = ((IPage)modelData).PageTemplate;
+            }
+
+            // Run away run away
+            if (template == null) return null;
+
+            var fields = template.MetadataFields;
+
+            var renderData = new RenderData();
+
+            // TODO reuse logic from page rendering
+            var view = Regex.Replace(template.Title, @"\[.*\]|\s", String.Empty);
+            //Todo: make it configurable
+            var action = DefaultControllerAction;
+            var controller = DefaultController;
+            var viewFieldName = "view";
+            var actionFieldName = "action";
+            var controllerFieldName = "controller";
+
+            if (fields.ContainsKey(viewFieldName))
+            {
+                view = fields[viewFieldName].Value;
+            }
+            if (fields.ContainsKey(controllerFieldName))
+            {
+                controller = fields[controllerFieldName].Value;
+            }
+            if (fields.ContainsKey(actionFieldName))
+            {
+                action = fields[actionFieldName].Value;
+            }
+
+            renderData.View = view;
+            renderData.Action = action;
+            renderData.Controller = controller;
+
+            return new[] { renderData };
+        }
+
+        public override Type ExpectedReturnType
+        {
+            get
+            {
+                return typeof(string);
+            }
+        }
+    }
 }

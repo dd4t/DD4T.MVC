@@ -8,6 +8,7 @@ using System.Security;
 using DD4T.ContentModel.Contracts.Logging;
 using DD4T.ContentModel.Factories;
 using System;
+using DD4T.Core.Contracts.ViewModels;
 
 namespace DD4T.Mvc.Controllers
 {
@@ -169,19 +170,13 @@ namespace DD4T.Mvc.Controllers
                 return result;
             }
         }
-        //public virtual ActionResult ComponentPresentation(IComponentPresentation cp)
-        //{
-        //    try
-        //    {
-        //        ViewBag.Renderer = ComponentPresentationRenderer;
-        //        return GetView(cp);
-        //    }
-        //    catch (ConfigurationException e)
-        //    {
-        //        return View("Configuration exception: " + e.Message);
-        //    }
-        //}
 
 
+        public virtual ActionResult Model()
+        {
+            IViewModel viewModel = RouteData.Values["model"] as IViewModel;
+            string view = RouteData.Values["view"] as string;
+            return View(view, viewModel);
+        }
     }
 }
