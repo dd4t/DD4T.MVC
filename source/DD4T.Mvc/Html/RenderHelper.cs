@@ -6,7 +6,7 @@ namespace DD4T.Mvc.Html
 {
     public static class RenderHelper
     {
-        public static MvcHtmlString Render(this HtmlHelper htmlHelper, IRenderable viewModel)
+        public static MvcHtmlString Render(this HtmlHelper htmlHelper, IRenderableViewModel viewModel)
         {
             return htmlHelper.Action(viewModel.RenderData.Action, viewModel.RenderData.Controller, new { model = viewModel, view = viewModel.RenderData.View });
         }

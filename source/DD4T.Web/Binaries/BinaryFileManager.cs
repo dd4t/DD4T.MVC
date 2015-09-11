@@ -17,7 +17,6 @@ namespace DD4T.Web.Binaries
     /// <summary>
     /// Ensures a Binary file is cached on the file-system from the Tridion Broker DB
     /// </summary>
-    [Obsolete()]
     public class BinaryFileManager : IBinaryFileManager
     {
         private readonly ICacheAgent CacheAgent;

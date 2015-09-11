@@ -171,7 +171,6 @@ namespace DD4T.Mvc.Controllers
             }
         }
 
-
         public virtual ActionResult Model()
         {
             IViewModel viewModel = RouteData.Values["model"] as IViewModel;
