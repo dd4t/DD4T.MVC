@@ -154,7 +154,7 @@ namespace DD4T.Mvc.Html
             get
             {
                 if (_defaultPageFileName == null)
-                    _defaultPageFileName = _configuration.DefaultPage;
+                    _defaultPageFileName = _configuration.WelcomeFile;
 
                 return _defaultPageFileName;
             }

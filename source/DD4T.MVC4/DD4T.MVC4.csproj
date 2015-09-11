@@ -46,11 +46,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Core.Contracts, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911213222\lib\net45\DD4T.Core.Contracts.dll</HintPath>
+      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911231151\lib\net45\DD4T.Core.Contracts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DD4T.Factories, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911213222\lib\net45\DD4T.Factories.dll</HintPath>
+      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911231151\lib\net45\DD4T.Factories.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DD4T.Serialization, Version=2.0.3.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
@@ -58,11 +58,11 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Utils, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911213222\lib\net45\DD4T.Utils.dll</HintPath>
+      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911231151\lib\net45\DD4T.Utils.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="DD4T.ViewModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911213222\lib\net45\DD4T.ViewModels.dll</HintPath>
+      <HintPath>..\packages\DD4T.Core.2.0.0-build20150911231151\lib\net45\DD4T.ViewModels.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">

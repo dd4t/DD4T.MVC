@@ -63,16 +63,16 @@ namespace DD4T.Mvc.Controllers
         }
 
         private Regex reDefaultPage = new Regex(@".*/[^/\.]*(/?)$");
-        private string _defaultPageFileName = null;
-        public string DefaultPageFileName
+        private string _welcomeFileName = null;
+        public string WelcomeFileName
         {
             get
             {
-                if (_defaultPageFileName == null)
+                if (_welcomeFileName == null)
                 {
-                    _defaultPageFileName = DD4TConfiguration.DefaultPage;
+                    _welcomeFileName = DD4TConfiguration.WelcomeFile;
                 }
-                return _defaultPageFileName;
+                return _welcomeFileName;
             }
         }
 
@@ -114,7 +114,7 @@ namespace DD4T.Mvc.Controllers
 
             if (string.IsNullOrEmpty(url))
             {
-                url = DefaultPageFileName;
+                url = WelcomeFileName;
             }
             else
             {
@@ -122,11 +122,11 @@ namespace DD4T.Mvc.Controllers
                 {
                     if (url.EndsWith("/"))
                     {
-                        url += DefaultPageFileName;
+                        url += WelcomeFileName;
                     }
                     else
                     {
-                        url += "/" + DefaultPageFileName;
+                        url += "/" + WelcomeFileName;
                     }
                 }
             }
