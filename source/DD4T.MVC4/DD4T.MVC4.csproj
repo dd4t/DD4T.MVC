@@ -119,6 +119,9 @@
     <Compile Include="..\DD4T.MVC\Caching\WebCacheAgent.cs">
       <Link>Caching\WebCacheAgent.cs</Link>
     </Compile>
+    <Compile Include="..\DD4T.Mvc\Controllers\DD4TControllerBase.cs">
+      <Link>Controllers\DD4TControllerBase.cs</Link>
+    </Compile>
     <Compile Include="..\DD4T.MVC\Controllers\IComponentController.cs">
       <Link>Controllers\IComponentController.cs</Link>
     </Compile>
@@ -127,6 +130,9 @@
     </Compile>
     <Compile Include="..\DD4T.MVC\Controllers\IPageController.cs">
       <Link>Controllers\IPageController.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\Controllers\ModelControllerBase.cs">
+      <Link>Controllers\ModelControllerBase.cs</Link>
     </Compile>
     <Compile Include="..\DD4T.MVC\Controllers\TridionControllerBase.cs">
       <Link>Controllers\TridionControllerBase.cs</Link>
@@ -175,6 +181,21 @@
     </Compile>
     <Compile Include="..\dd4t solution items\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\Attributes\Attributes.cs">
+      <Link>ViewModels\Attributes\Attributes.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\XpmRenderer.cs">
+      <Link>ViewModels\XpmRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\XPM\Contracts.cs">
+      <Link>ViewModels\XPM\Contracts.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\XPM\XpmExtensions.cs">
+      <Link>ViewModels\XPM\XpmExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\XPM\XpmMarkupService.cs">
+      <Link>ViewModels\XPM\XpmMarkupService.cs</Link>
     </Compile>
     <Compile Include="Properties\SpecificAssemblyInfo.cs" />
   </ItemGroup>

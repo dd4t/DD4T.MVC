@@ -123,6 +123,9 @@
     <Compile Include="..\dd4t.mvc\caching\WebCacheAgent.cs">
       <Link>Caching\WebCacheAgent.cs</Link>
     </Compile>
+    <Compile Include="..\DD4T.Mvc\Controllers\DD4TControllerBase.cs">
+      <Link>Controllers\DD4TControllerBase.cs</Link>
+    </Compile>
     <Compile Include="..\dd4t.mvc\controllers\IComponentController.cs">
       <Link>Controllers\IComponentController.cs</Link>
     </Compile>
@@ -131,6 +134,9 @@
     </Compile>
     <Compile Include="..\dd4t.mvc\controllers\IPageController.cs">
       <Link>Controllers\IPageController.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\Controllers\ModelControllerBase.cs">
+      <Link>Controllers\ModelControllerBase.cs</Link>
     </Compile>
     <Compile Include="..\dd4t.mvc\controllers\TridionControllerBase.cs">
       <Link>Controllers\TridionControllerBase.cs</Link>

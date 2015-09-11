@@ -13,54 +13,43 @@ using DD4T.ContentModel.Contracts.Configuration;
 
 namespace DD4T.Mvc.Controllers
 {
-    public abstract class TridionControllerBase : DD4TControllerBase, IPageController, IComponentPresentationController
+    public abstract class ModelControllerBase : DD4TControllerBase, IPageController, IComponentPresentationController
     {
+        protected IViewModelFactory ViewModelFactory;
 
-        public TridionControllerBase(IPageFactory pageFactory, IComponentPresentationFactory componentPresentationFactory, ILogger logger, IDD4TConfiguration dd4tConfiguration) : base(pageFactory, componentPresentationFactory, logger, dd4tConfiguration)
+        public ModelControllerBase(IPageFactory pageFactory, IComponentPresentationFactory componentPresentationFactory, ILogger logger, IDD4TConfiguration dd4tConfiguration, IViewModelFactory viewModelFactory) : base(pageFactory, componentPresentationFactory, logger, dd4tConfiguration)
         {
+            this.ViewModelFactory = viewModelFactory;
         }
 
-        
-
-
-
         [HandleError]
-        public virtual ActionResult Page(string url)
+        /// <summary>
+        /// Retrieve a page from the provider, convert it into an IViewModel and render it with the specified view
+        /// </summary>
+        /// <returns>MVC ActionResult</returns>
+        public virtual ActionResult PageModel(string url)
         {
             url = AddWelcomePageToUrl(url);
             IPage page = GetPage(url);
             if (page == null) { throw new HttpException(404, "Page cannot be found"); }
-            return View(GetViewName(page), page);
+            IViewModel pageViewModel = ViewModelFactory.BuildViewModel(page);
+            return View(GetViewName(page), pageViewModel);
         }
 
+
         /// <summary>
-        /// Read component presentation from RouteData and render it with the specified view
+        /// Read IViewModel representing a component from the RouteData and render it with the specified view
         /// </summary>
-        /// <param name="componentPresentationId"></param>
-        /// <returns></returns>
-        public virtual ActionResult ComponentPresentation() // TODO: overload with component/ct uri to retrieve DCPs
+        /// <returns>MVC ActionResult</returns>
+        public virtual ActionResult ComponentModel()
         {
-            LoggerService.Information(">>ComponentPresentation", LoggingCategory.Performance);
-            try
-            {
-                IComponentPresentation componentPresentation = RouteData.Values["ComponentPresentation"] as IComponentPresentation;
-                if (componentPresentation == null)
-                {
-                    throw new ArgumentException("No ComponentPresentation found in the RouteData");
-                }
-                return View(GetViewName(componentPresentation), componentPresentation);
-            }
-            catch (ConfigurationException e)
-            {
-                ViewResult result = View("Configuration exception: " + e.Message);
-                LoggerService.Information("<<ComponentPresentation", LoggingCategory.Performance);
-                return result;
-            }
+            IViewModel viewModel = RouteData.Values["model"] as IViewModel;
+            string view = RouteData.Values["view"] as string;
+            return View(view, viewModel);
         }
 
-
         /// <summary>
-        /// Create IPage from data in the request and forward to the view
+        /// Create IPage from XML in the request and forward to the view
         /// </summary>
         /// <example>
         /// To use, add the following code to the Global.asax.cs of your MVC web application:
@@ -78,18 +67,18 @@ namespace DD4T.Mvc.Controllers
         [ValidateInput(false)]
         public System.Web.Mvc.ActionResult PreviewPage()
         {
-
             try
             {
                 using (StreamReader reader = new StreamReader(this.Request.InputStream))
                 {
                     string pageXml = reader.ReadToEnd();
-                    IPage page = PageFactory.GetIPageObject(pageXml);
+                    IPage page = this.PageFactory.GetIPageObject(pageXml);
                     if (page == null)
                     {
                         throw new ModelNotCreatedException("--unknown--");
                     }
-                    return View(GetViewName(page), page);
+                    IViewModel pageViewModel = ViewModelFactory.BuildViewModel(page);
+                    return View(GetViewName(page), pageViewModel);
                 }
             }
             catch (SecurityException se)
@@ -97,8 +86,5 @@ namespace DD4T.Mvc.Controllers
                 throw new HttpException(403, se.Message);
             }
         }
-
-
-
     }
 }
