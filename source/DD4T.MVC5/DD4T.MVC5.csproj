@@ -47,11 +47,11 @@
     </Reference>
     <Reference Include="DD4T.Core.Contracts, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DD4T.Core.2.0.0-alpha54\lib\net45\DD4T.Core.Contracts.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Factories, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DD4T.Core.2.0.0-alpha54\lib\net45\DD4T.Factories.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Serialization">
       <HintPath>..\packages\DD4T.Model.2.0.3-alpha27\lib\net45\DD4T.Serialization.dll</HintPath>
@@ -59,11 +59,11 @@
     </Reference>
     <Reference Include="DD4T.Utils, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DD4T.Core.2.0.0-alpha54\lib\net45\DD4T.Utils.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.ViewModels, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DD4T.Core.2.0.0-alpha54\lib\net45\DD4T.ViewModels.dll</HintPath>
-      <Private>True</Private>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -216,7 +216,7 @@
     <ProjectReference Include="..\DD4T.Web.MVC5\DD4T.Web.MVC5.csproj">
       <Project>{7809cf7e-2902-419b-8e71-890512fab6a3}</Project>
       <Name>DD4T.Web.MVC5</Name>
-      <Private>True</Private>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
