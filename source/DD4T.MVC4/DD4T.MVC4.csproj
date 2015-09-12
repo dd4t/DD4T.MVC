@@ -46,24 +46,24 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Core.Contracts, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-alpha44\lib\net45\DD4T.Core.Contracts.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\DD4T.Core.2.0.0-alpha54\lib\net45\DD4T.Core.Contracts.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Factories, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-alpha44\lib\net45\DD4T.Factories.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\DD4T.Core.2.0.0-alpha54\lib\net45\DD4T.Factories.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Serialization, Version=2.0.3.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
       <HintPath>..\packages\DD4T.Model.2.0.3-alpha27\lib\net45\DD4T.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.Utils, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-alpha44\lib\net45\DD4T.Utils.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\DD4T.Core.2.0.0-alpha54\lib\net45\DD4T.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="DD4T.ViewModels, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.0.0-alpha44\lib\net45\DD4T.ViewModels.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\packages\DD4T.Core.2.0.0-alpha54\lib\net45\DD4T.ViewModels.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -119,6 +119,9 @@
     <Compile Include="..\DD4T.MVC\Caching\WebCacheAgent.cs">
       <Link>Caching\WebCacheAgent.cs</Link>
     </Compile>
+    <Compile Include="..\DD4T.Mvc\Controllers\DD4TControllerBase.cs">
+      <Link>Controllers\DD4TControllerBase.cs</Link>
+    </Compile>
     <Compile Include="..\DD4T.MVC\Controllers\IComponentController.cs">
       <Link>Controllers\IComponentController.cs</Link>
     </Compile>
@@ -127,6 +130,9 @@
     </Compile>
     <Compile Include="..\DD4T.MVC\Controllers\IPageController.cs">
       <Link>Controllers\IPageController.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\Controllers\ModelControllerBase.cs">
+      <Link>Controllers\ModelControllerBase.cs</Link>
     </Compile>
     <Compile Include="..\DD4T.MVC\Controllers\TridionControllerBase.cs">
       <Link>Controllers\TridionControllerBase.cs</Link>
@@ -142,6 +148,9 @@
     </Compile>
     <Compile Include="..\DD4T.MVC\Html\ImageHelper.cs">
       <Link>Html\ImageHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\Html\RenderHelper.cs">
+      <Link>Html\RenderHelper.cs</Link>
     </Compile>
     <Compile Include="..\DD4T.MVC\Html\RichTextHelper.cs">
       <Link>Html\RichTextHelper.cs</Link>
@@ -173,6 +182,21 @@
     <Compile Include="..\dd4t solution items\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\Attributes\Attributes.cs">
+      <Link>ViewModels\Attributes\Attributes.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\XpmRenderer.cs">
+      <Link>ViewModels\XpmRenderer.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\XPM\Contracts.cs">
+      <Link>ViewModels\XPM\Contracts.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\XPM\XpmExtensions.cs">
+      <Link>ViewModels\XPM\XpmExtensions.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\ViewModels\XPM\XpmMarkupService.cs">
+      <Link>ViewModels\XPM\XpmMarkupService.cs</Link>
+    </Compile>
     <Compile Include="Properties\SpecificAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -188,6 +212,7 @@
     <ProjectReference Include="..\DD4T.Web.MVC4\DD4T.Web.MVC4.csproj">
       <Project>{f27c25a0-56dc-4413-b804-551dafbc1b5d}</Project>
       <Name>DD4T.Web.MVC4</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

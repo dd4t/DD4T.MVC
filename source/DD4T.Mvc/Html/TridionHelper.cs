@@ -9,7 +9,7 @@ using System;
 
 namespace DD4T.Mvc.Html
 {
-    [Obsolete("Controller should handle this kind of logic")]
+    [Obsolete("Consider changing to ViewModels and rendering them with the RenderHelper")]
     public static class TridionHelper
     {
         private static IDD4TConfiguration _configuration;
@@ -154,7 +154,7 @@ namespace DD4T.Mvc.Html
             get
             {
                 if (_defaultPageFileName == null)
-                    _defaultPageFileName = _configuration.DefaultPage;
+                    _defaultPageFileName = _configuration.WelcomeFile;
 
                 return _defaultPageFileName;
             }

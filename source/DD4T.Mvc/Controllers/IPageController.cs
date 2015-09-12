@@ -7,6 +7,5 @@ namespace DD4T.Mvc.Controllers
     public interface IPageController : IController
     {
         IPageFactory PageFactory { get; set; }
-        IComponentPresentationRenderer ComponentPresentationRenderer { get; set; }
     }
 }
