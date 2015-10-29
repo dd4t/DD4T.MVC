@@ -6,7 +6,7 @@ using System;
 
 namespace DD4T.Mvc.Html
 {
-    [Obsolete("resolving of the richtext fields should happen in your controller.")]
+    [Obsolete("Use 'DD4T.Core.Contracts.Resolvers.IRichTextResolver', with default binding 'DD4T.Utils.Resolver.DefaultRichTextResolver'. Binding is done if you're using one off the provided DD4T DI Containers.")]
     public static class RichTextHelper 
     {
         /// <summary>
