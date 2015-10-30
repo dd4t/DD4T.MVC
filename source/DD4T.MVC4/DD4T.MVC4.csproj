@@ -33,33 +33,37 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DD4T.ContentModel, Version=2.0.4.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Model.2.0.4-beta1\lib\net45\DD4T.ContentModel.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="DD4T.ContentModel, Version=2.0.5.13, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Model.2.0.5.13-alpha\lib\net45\DD4T.ContentModel.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.ContentModel.Contracts, Version=2.0.4.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Model.2.0.4-beta1\lib\net45\DD4T.ContentModel.Contracts.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="DD4T.ContentModel.Contracts, Version=2.0.5.13, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Model.2.0.5.13-alpha\lib\net45\DD4T.ContentModel.Contracts.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.ContentModel.XmlSerializers, Version=2.0.4.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Model.2.0.4-beta1\lib\net45\DD4T.ContentModel.XmlSerializers.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="DD4T.ContentModel.XmlSerializers, Version=2.0.5.13, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Model.2.0.5.13-alpha\lib\net45\DD4T.ContentModel.XmlSerializers.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.Core.Contracts">
-      <HintPath>..\packages\DD4T.Core.2.0.0-build20151023133351\lib\net45\DD4T.Core.Contracts.dll</HintPath>
+    <Reference Include="DD4T.Core.Contracts, Version=2.0.6.92, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.0.6.92-alpha\lib\net45\DD4T.Core.Contracts.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.Factories">
-      <HintPath>..\packages\DD4T.Core.2.0.0-build20151023133351\lib\net45\DD4T.Factories.dll</HintPath>
+    <Reference Include="DD4T.Factories, Version=2.0.6.92, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.0.6.92-alpha\lib\net45\DD4T.Factories.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.Serialization, Version=2.0.4.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Model.2.0.4-beta1\lib\net45\DD4T.Serialization.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="DD4T.Serialization, Version=2.0.5.13, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Model.2.0.5.13-alpha\lib\net45\DD4T.Serialization.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.Utils">
-      <HintPath>..\packages\DD4T.Core.2.0.0-build20151023133351\lib\net45\DD4T.Utils.dll</HintPath>
+    <Reference Include="DD4T.Utils, Version=2.0.6.92, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.0.6.92-alpha\lib\net45\DD4T.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="DD4T.ViewModels">
-      <HintPath>..\packages\DD4T.Core.2.0.0-build20151023133351\lib\net45\DD4T.ViewModels.dll</HintPath>
+    <Reference Include="DD4T.ViewModels, Version=2.0.6.92, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.0.6.92-alpha\lib\net45\DD4T.ViewModels.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -196,6 +200,7 @@
     <Compile Include="Properties\SpecificAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
