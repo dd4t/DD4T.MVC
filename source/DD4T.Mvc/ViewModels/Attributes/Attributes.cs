@@ -97,7 +97,6 @@ namespace DD4T.Mvc.ViewModels.Attributes
             // Run away run away
             if (template == null) return null;
 
-            var fields = template.MetadataFields;
 
             var renderData = new RenderData();
 
@@ -110,19 +109,22 @@ namespace DD4T.Mvc.ViewModels.Attributes
             var actionFieldName = "action";
             var controllerFieldName = "controller";
 
-            if (fields.ContainsKey(viewFieldName))
+            var fields = template.MetadataFields;
+            if (fields != null)
             {
-                view = fields[viewFieldName].Value;
+                if (fields.ContainsKey(viewFieldName))
+                {
+                    view = fields[viewFieldName].Value;
+                }
+                if (fields.ContainsKey(controllerFieldName))
+                {
+                    controller = fields[controllerFieldName].Value;
+                }
+                if (fields.ContainsKey(actionFieldName))
+                {
+                    action = fields[actionFieldName].Value;
+                }
             }
-            if (fields.ContainsKey(controllerFieldName))
-            {
-                controller = fields[controllerFieldName].Value;
-            }
-            if (fields.ContainsKey(actionFieldName))
-            {
-                action = fields[actionFieldName].Value;
-            }
-
             renderData.View = view;
             renderData.Action = action;
             renderData.Controller = controller;
