@@ -191,10 +191,10 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <param name="model">Model</param>
         /// <param name="region">Region</param>
         /// <returns>XPM Markup</returns>
-        public HtmlString StartXpmEditingZone(string region = null)
+        public HtmlString StartXpmEditingZone()
         {
             if (model.ModelData is IComponentPresentation)
-                return new HtmlString(XpmMarkupService.RenderXpmMarkupForComponent(((IComponentPresentation)model.ModelData), region));
+                return new HtmlString(XpmMarkupService.RenderXpmMarkupForComponent(((IComponentPresentation)model.ModelData)));
             else return null;
         }
         #endregion
@@ -203,21 +203,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         private bool IsSiteEditEnabled(IViewModel model)
         {
             //TODO: Fix this
-            bool result = false;
-            if (model != null && model.ModelData != null)
-            {
-                TcmUri tcmUri = TcmUri.NullUri;
-                if(contentModel is IComponentPresentation)
-                {
-                    tcmUri = new TcmUri((contentModel as IComponentPresentation).Component.Id);
-                }
-                else if(contentModel is IEmbeddedFields)
-                {
-                    tcmUri = new TcmUri((contentModel as IEmbeddedFields).EmbeddedSchema.Id);
-                }
-                result = XpmMarkupService.IsSiteEditEnabled(tcmUri.PublicationId);
-            }
-            return result;
+            return xpmMarkupService.IsSiteEditEnabled();
         }
 
         private int IndexOf(IEnumerable enumerable, object obj)

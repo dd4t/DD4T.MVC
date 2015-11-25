@@ -13,6 +13,7 @@ namespace DD4T.Mvc.SiteEdit
     /// 
     /// author Rogier Oudshoorn, .Net port by Quirijn Slings, UI 2012 port by Bart Koopman
     /// </summary>
+    [Obsolete("use DD4T.Mvc.ViewModels.XPM.XpmMarkupService")]
     public class SiteEditService
     {
         /// <summary>

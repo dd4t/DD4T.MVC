@@ -6,6 +6,7 @@ using DD4T.Factories;
 using DD4T.ContentModel.Factories;
 using DD4T.ContentModel.Contracts.Configuration;
 using System;
+using DD4T.Core.Contracts.Resolvers;
 
 namespace DD4T.Mvc.Html
 {
@@ -13,7 +14,8 @@ namespace DD4T.Mvc.Html
     public static class TridionHelper
     {
         private static IDD4TConfiguration _configuration;
-        private static ILinkFactory _linkFactory;
+        //private static ILinkFactory _linkFactory;
+        private static ILinkResolver _linkResolver;
         private static ILogger _logger;
         private static IComponentPresentationRenderer _renderer;
 
@@ -23,14 +25,16 @@ namespace DD4T.Mvc.Html
             //This helper should not be used in views, this logic should get executed by the controller.
 
             var config = DependencyResolver.Current.GetService<IDD4TConfiguration>();
-            var linkFactory = DependencyResolver.Current.GetService<ILinkFactory>();
+            //var linkFactory = DependencyResolver.Current.GetService<ILinkFactory>();
             var logger = DependencyResolver.Current.GetService<ILogger>();
             var renderer = DependencyResolver.Current.GetService<IComponentPresentationRenderer>();
+            var linkResolver = DependencyResolver.Current.GetService<ILinkResolver>();
 
-            _linkFactory = linkFactory;
+            //_linkFactory = linkFactory;
             _configuration = config;
             _logger = logger;
             _renderer = renderer;
+            _linkResolver = linkResolver;
         }
 
         public static MvcHtmlString RenderComponentPresentations(this HtmlHelper helper)
@@ -118,11 +122,8 @@ namespace DD4T.Mvc.Html
         #region linking functionality
         public static string GetResolvedUrl(this IComponent component)
         {
-            return _linkFactory.ResolveLink(component.Id);
-        }
-        public static MvcHtmlString GetResolvedLink(this IComponent component)
-        {
-            return component.GetResolvedLink();
+            return _linkResolver.ResolveUrl(component);
+            //return _linkFactory.ResolveLink(component.Id);
         }
 
         public static MvcHtmlString GetResolvedLink(this IComponent component, string linkText, string showOnFail)
