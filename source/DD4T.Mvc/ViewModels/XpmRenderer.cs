@@ -233,9 +233,8 @@ namespace DD4T.Mvc.ViewModels.XPM
         }
         private IModelProperty GetModelProperty<TProp>(Expression<Func<TModel, TProp>> propertyLambda)
         {
-
             PropertyInfo property = reflectionHelper.GetPropertyInfo(propertyLambda);
-            return GetModelProperty(typeof(TModel), property);
+            return GetModelProperty(model.GetType(), property); 
         }
         private HtmlString SiteEditable<TProp>(IViewModel model, IFieldSet fields, IModelProperty fieldProp, int index)
         {
