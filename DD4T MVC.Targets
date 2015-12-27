@@ -97,7 +97,7 @@
     	<GetInformationalVersion AssemblyFile="@(MainPackageFiles)">
     		<Output TaskParameter="Version" PropertyName="VersionInfo"/>
     	</GetInformationalVersion>
-
+		<Message Text="Current version: $(VersionInfo)"  Importance="High"/>
 		<!-- Get the productversion from the assemblies -->
     	<GetNewDevVersion OldVersion="$(VersionInfo)" Condition="'$(Configuration)' == 'Debug'">
     		<Output TaskParameter="NewVersion" PropertyName="VersionInfo"/>

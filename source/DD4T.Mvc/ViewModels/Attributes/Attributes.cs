@@ -21,9 +21,9 @@ namespace DD4T.Mvc.ViewModels.Attributes
     /// </summary>
     /// <remarks>Uses the default DD4T GetResolvedUrl extension method. To override behavior you must implement
     /// your own Field Attribute. Future DD4T versions will hopefully allow for IoC of this implementation.</remarks>
+    [Obsolete("Attribute is moved to DD4T.Core. please use 'DD4T.ViewModels.Attributes.ResolvedUrlFieldAttribute'")]
     public class ResolvedUrlFieldAttribute : FieldAttributeBase
     {
-        //public ResolvedUrlFieldAttribute(string fieldName) : base(fieldName) { }
         public override IEnumerable GetFieldValues(IField field, IModelProperty property, ITemplate template, IViewModelFactory factory)
         {
             return field.LinkedComponentValues
@@ -34,6 +34,7 @@ namespace DD4T.Mvc.ViewModels.Attributes
         {
             get { return typeof(string); }
         }
+
     }
 
     /// <summary>
@@ -42,14 +43,25 @@ namespace DD4T.Mvc.ViewModels.Attributes
     /// <remarks>This Attribute is dependent on a specific implementation for resolving Rich Text. 
     /// In future versions of DD4T, the rich text resolver will hopefully be abstracted to allow for IoC, 
     /// but for now, to change the behavior you must implement your own Attribute.</remarks>
-    public class RichTextFieldAttribute : FieldAttributeBase
+    public class RichTextFieldAttribute : FieldAttributeBase, ILinkablePropertyAttribute
     {
-        //public RichTextFieldAttribute(string fieldName) : base(fieldName) { }
         public override IEnumerable GetFieldValues(IField field, IModelProperty property, ITemplate template, IViewModelFactory factory)
         {
+            string pageId = null;
+            if (_contextModel != null)
+                pageId = _contextModel.PageId.ToString();
+
             return field.Values
-                .Select(v => v.ResolveRichText()); //Hidden dependency on DD4T Resolve Rich Text implementation
+                .Select(v => new MvcHtmlString(factory.RichTextResolver.Resolve(v, pageId).ToString())); 
         }
+
+        public IEnumerable GetPropertyValues(IModel modelData, IModelProperty property, IViewModelFactory builder, IContextModel contextModel)
+        {
+            _contextModel = contextModel;
+            return base.GetPropertyValues(modelData, property, builder);
+        }
+
+        private IContextModel _contextModel;
 
         public override Type ExpectedReturnType
         {
@@ -97,7 +109,6 @@ namespace DD4T.Mvc.ViewModels.Attributes
             // Run away run away
             if (template == null) return null;
 
-            var fields = template.MetadataFields;
 
             var renderData = new RenderData();
 
@@ -110,19 +121,22 @@ namespace DD4T.Mvc.ViewModels.Attributes
             var actionFieldName = "action";
             var controllerFieldName = "controller";
 
-            if (fields.ContainsKey(viewFieldName))
+            var fields = template.MetadataFields;
+            if (fields != null)
             {
-                view = fields[viewFieldName].Value;
+                if (fields.ContainsKey(viewFieldName))
+                {
+                    view = fields[viewFieldName].Value;
+                }
+                if (fields.ContainsKey(controllerFieldName))
+                {
+                    controller = fields[controllerFieldName].Value;
+                }
+                if (fields.ContainsKey(actionFieldName))
+                {
+                    action = fields[actionFieldName].Value;
+                }
             }
-            if (fields.ContainsKey(controllerFieldName))
-            {
-                controller = fields[controllerFieldName].Value;
-            }
-            if (fields.ContainsKey(actionFieldName))
-            {
-                action = fields[actionFieldName].Value;
-            }
-
             renderData.View = view;
             renderData.Action = action;
             renderData.Controller = controller;

@@ -13,6 +13,7 @@ using DD4T.ViewModels;
 using DD4T.ContentModel;
 using DD4T.MVC.ViewModels.XPM;
 using System.Web.Mvc;
+using DD4T.ContentModel.Contracts.Configuration;
 
 namespace DD4T.Mvc.ViewModels.XPM
 {
@@ -21,7 +22,8 @@ namespace DD4T.Mvc.ViewModels.XPM
     /// </summary>
     public static class XpmExtensions
     {
-        private static IXpmMarkupService xpmMarkupService = new XpmMarkupService();
+        private static IDD4TConfiguration configuration = DependencyResolver.Current.GetService<IDD4TConfiguration>();
+        private static IXpmMarkupService xpmMarkupService = new XpmMarkupService(configuration);
         private static IViewModelResolver resolver = DependencyResolver.Current.GetService<IViewModelResolver>();
         private static IReflectionHelper reflectionHelper = DependencyResolver.Current.GetService<IReflectionHelper>();
         /// <summary>
@@ -112,13 +114,13 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <param name="model">Model</param>
         /// <param name="region">Region</param>
         /// <returns>XPM Markup</returns>
-        public static HtmlString StartXpmEditingZone(this IViewModel model, string region = null)
+        public static HtmlString StartXpmEditingZone(this IViewModel model)
         {
             HtmlString result = null;
             if (model.ModelData is IComponentPresentation)
             {
                 var renderer = new XpmRenderer<IViewModel>(model, XpmMarkupService, resolver, reflectionHelper);
-                result = renderer.StartXpmEditingZone(region);
+                result = renderer.StartXpmEditingZone();
             }
             return result;
         }

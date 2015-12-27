@@ -23,21 +23,20 @@ namespace DD4T.MVC.ViewModels.XPM
         /// Renders the XPM Markup for a Component Presentation
         /// </summary>
         /// <param name="cp">Component Presentation</param>
-        /// <param name="region">Optional region</param>
         /// <returns>XPM Markup</returns>
-        string RenderXpmMarkupForComponent(IComponentPresentation cp, string region = null);
+        string RenderXpmMarkupForComponent(IComponentPresentation cp);
         /// <summary>
-        /// Determines if Site Edit is enabled for a particular item
+        /// Renders the XPM Markup for a Page
         /// </summary>
-        /// <param name="item">Item</param>
-        /// <returns></returns>
-        bool IsSiteEditEnabled(IItem item);
+        /// <param name="page">Page</param>
+        /// <param name="url">tridion CM url</param>
+        /// <returns>XPM Markup</returns>
+        string RenderXpmMarkupForPage(IPage page, string url);
         /// <summary>
-        /// Determines if Site Edit is enabeld for a publication
+        /// Determines if Site Edit is enabled
         /// </summary>
-        /// <param name="publicationId">Publication ID</param>
         /// <returns></returns>
-        bool IsSiteEditEnabled(int publicationId);
+        bool IsSiteEditEnabled();
     }
 
     /// <summary>
@@ -105,8 +104,7 @@ namespace DD4T.MVC.ViewModels.XPM
         /// Renders the XPM Markup for a Component Presentation
         /// </summary>
         /// <param name="model">Model</param>
-        /// <param name="region">Region</param>
         /// <returns>XPM Markup</returns>
-        HtmlString StartXpmEditingZone(string region = null);
+        HtmlString StartXpmEditingZone();
     }
 }
