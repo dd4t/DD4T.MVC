@@ -20,10 +20,6 @@ namespace DD4T.Mvc.Controllers
         {
         }
 
-        
-
-
-
         [HandleError]
         public virtual ActionResult Page(string url)
         {
