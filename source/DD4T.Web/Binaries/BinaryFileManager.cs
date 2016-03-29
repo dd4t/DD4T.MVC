@@ -49,7 +49,7 @@ namespace DD4T.Web.Binaries
         {
             string urlPath = request.Url.AbsolutePath.Replace("/BinaryData", "");
 
-            LoggerService.Debug("Start processing " + urlPath);
+            LoggerService.Debug($"Start processing {urlPath} (physical path {request.PhysicalPath})");
             return BinaryFactory.FindAndStoreBinary(urlPath, request.PhysicalPath);
 
             //Dimensions dimensions = null;
