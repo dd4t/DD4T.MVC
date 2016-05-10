@@ -70,6 +70,10 @@ namespace DD4T.Mvc.Binders
                         model = _viewModelFactory.BuildViewModel(result);
                 }
             }
+
+            if(model == null && !controllerContext.IsChildAction)
+                throw new HttpException(404, "NOT FOUND");
+
             return model;
         }
 

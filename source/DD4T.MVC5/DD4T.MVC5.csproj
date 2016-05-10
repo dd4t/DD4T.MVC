@@ -146,6 +146,9 @@
     <Compile Include="..\DD4T.Mvc\DD4TApplication.cs">
       <Link>DD4TApplication.cs</Link>
     </Compile>
+    <Compile Include="..\DD4T.Mvc\Extensions\HtmlHelperExtensions.cs">
+      <Link>Extensions\HtmlHelperExtensions.cs</Link>
+    </Compile>
     <Compile Include="..\DD4T.MVC\FactoryService.cs">
       <Link>FactoryService.cs</Link>
     </Compile>
