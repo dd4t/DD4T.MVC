@@ -110,6 +110,9 @@
     <Compile Include="..\dd4t.mvc\attributes\UsesTridionPage.cs">
       <Link>Attributes\UsesTridionPage.cs</Link>
     </Compile>
+    <Compile Include="..\DD4T.Mvc\Binders\DefaultBinder.cs">
+      <Link>Binders\DefaultBinder.cs</Link>
+    </Compile>
     <Compile Include="..\dd4t.mvc\caching\SchemaComponentsCacheDependency.cs">
       <Link>Caching\SchemaComponentsCacheDependency.cs</Link>
     </Compile>
@@ -121,6 +124,9 @@
     </Compile>
     <Compile Include="..\DD4T.Mvc\Controllers\DD4TControllerBase.cs">
       <Link>Controllers\DD4TControllerBase.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\Controllers\DD4TDefaultController.cs">
+      <Link>Controllers\DD4TDefaultController.cs</Link>
     </Compile>
     <Compile Include="..\dd4t.mvc\controllers\IComponentController.cs">
       <Link>Controllers\IComponentController.cs</Link>
@@ -136,6 +142,9 @@
     </Compile>
     <Compile Include="..\dd4t.mvc\controllers\TridionControllerBase.cs">
       <Link>Controllers\TridionControllerBase.cs</Link>
+    </Compile>
+    <Compile Include="..\DD4T.Mvc\DD4TApplication.cs">
+      <Link>DD4TApplication.cs</Link>
     </Compile>
     <Compile Include="..\DD4T.MVC\FactoryService.cs">
       <Link>FactoryService.cs</Link>
