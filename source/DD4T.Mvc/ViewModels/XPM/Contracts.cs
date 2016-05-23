@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace DD4T.MVC.ViewModels.XPM
+namespace DD4T.Mvc.ViewModels.XPM
 {
     public interface IXpmMarkupService
     {
@@ -106,5 +106,13 @@ namespace DD4T.MVC.ViewModels.XPM
         /// <param name="model">Model</param>
         /// <returns>XPM Markup</returns>
         HtmlString StartXpmEditingZone();
+    }
+}
+
+namespace DD4T.MVC.ViewModels.XPM
+{
+     [Obsolete("Use DD4T.Mvc.ViewModels.XPM.IXpmMarkupService instead of DD4T.MVC.ViewModels.XPM.IXpmMarkupService")]
+    public interface IXpmMarkupService : DD4T.Mvc.ViewModels.XPM.IXpmMarkupService
+    {
     }
 }
