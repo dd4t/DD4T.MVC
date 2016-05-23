@@ -111,7 +111,7 @@ namespace DD4T.Mvc.ViewModels.XPM
 
 namespace DD4T.MVC.ViewModels.XPM
 {
-     [Obsolete("Use DD4T.Mvc.ViewModels.XPM.IXpmMarkupService instead of DD4T.MVC.ViewModels.XPM.IXpmMarkupService")]
+    [Obsolete("Use DD4T.Mvc.ViewModels.XPM.IXpmMarkupService instead of DD4T.MVC.ViewModels.XPM.IXpmMarkupService")]
     public interface IXpmMarkupService : DD4T.Mvc.ViewModels.XPM.IXpmMarkupService
     {
     }
