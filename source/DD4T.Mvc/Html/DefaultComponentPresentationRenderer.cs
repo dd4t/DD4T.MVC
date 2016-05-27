@@ -118,16 +118,25 @@ namespace DD4T.Mvc.Html
         private static MvcHtmlString RenderComponentPresentation(IComponentPresentation cp, HtmlHelper htmlHelper)
         {
             string controller = _configuration.ComponentPresentationController;
-            string action = _configuration.ComponentPresentationAction;
-
-
             if (cp.ComponentTemplate.MetadataFields != null && cp.ComponentTemplate.MetadataFields.ContainsKey("controller"))
             {
                 controller = cp.ComponentTemplate.MetadataFields["controller"].Value;
             }
+            if (string.IsNullOrEmpty(controller))
+            {
+                throw new InvalidOperationException("Controller was not configured in component template metadata or in application settings. "
+                    + "Unable to Render component presentation.");
+            }
+
+            string action = _configuration.ComponentPresentationAction;
             if (cp.ComponentTemplate.MetadataFields != null && cp.ComponentTemplate.MetadataFields.ContainsKey("action"))
             {
                 action = cp.ComponentTemplate.MetadataFields["action"].Value;
+            }
+            if (string.IsNullOrEmpty(action))
+            {
+                throw new InvalidOperationException("Action was not configured in component template metadata or in application settings. "
+                    + "Unable to Render component presentation.");
             }
 
             _loggerService.Debug("about to render component presentation with controller {0} and action {1}", LoggingCategory.Performance, controller, action);
