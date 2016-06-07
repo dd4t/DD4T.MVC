@@ -6,7 +6,7 @@ using DD4T.Core.Contracts.ViewModels;
 using Dynamic = DD4T.ContentModel;
 using DD4T.Mvc.SiteEdit;
 using DD4T.ContentModel;
-using DD4T.MVC.ViewModels.XPM;
+using DD4T.Mvc.ViewModels.XPM;
 using DD4T.ContentModel.Contracts.Configuration;
 
 namespace DD4T.Mvc.ViewModels.XPM
