@@ -11,7 +11,7 @@ using System.Reflection;
 using System.Collections;
 using DD4T.ViewModels;
 using DD4T.ContentModel;
-using DD4T.MVC.ViewModels.XPM;
+using DD4T.Mvc.ViewModels.XPM;
 using System.Web.Mvc;
 using DD4T.ContentModel.Contracts.Configuration;
 
