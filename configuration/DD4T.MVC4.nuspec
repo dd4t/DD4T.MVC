@@ -9,9 +9,9 @@
     <description>DD4T MVC4 Support</description>
     <releaseNotes>
     </releaseNotes>
-    <tags>SDLTridion Tridion DD4T MVC MVC4</tags>
+    <tags>SDLTridion Tridion DD4T MVC MVC4 SDLWeb SDLWEB SDLWeb8</tags>
     <dependencies>
-      <dependency id="DD4T.Core" version="2.0.7" />
+      <dependency id="DD4T.Core" version="2.1.0" />
       <dependency id="Microsoft.AspNet.Mvc" version="4.0.40804.0" />
     </dependencies>
   </metadata>

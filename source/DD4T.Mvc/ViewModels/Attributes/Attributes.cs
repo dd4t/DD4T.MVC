@@ -1,18 +1,14 @@
 using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using DD4T.Mvc.Html;
 using DD4T.ViewModels.Attributes;
 using System.Collections;
-using DD4T.ContentModel;
 using DD4T.Core.Contracts.ViewModels;
 using System;
 using DD4T.ViewModels;
 using System.Text.RegularExpressions;
 using DD4T.ContentModel.Contracts.Configuration;
+using DD4T.ContentModel;
 
 namespace DD4T.Mvc.ViewModels.Attributes
 {

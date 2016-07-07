@@ -48,62 +48,65 @@ namespace DD4T.Web.Binaries
         public bool ProcessRequest(HttpRequest request)
         {
             string urlPath = request.Url.AbsolutePath.Replace("/BinaryData", "");
-            LoggerService.Debug("Start processing " + urlPath);
-            Dimensions dimensions = null;
 
-            urlPath = StripDimensions(urlPath, out dimensions);
+            LoggerService.Debug($"Start processing {urlPath} (physical path {request.PhysicalPath})");
+            return BinaryFactory.FindAndStoreBinary(urlPath, request.PhysicalPath);
 
-            String physicalPath = request.PhysicalPath;
-            string cacheKey = GetCacheKey(urlPath);
-            DateTime? lastPublishedDate = CacheAgent.Load(cacheKey) as DateTime?;
+            //Dimensions dimensions = null;
+
+            //urlPath = StripDimensions(urlPath, out dimensions);
+
+            //String physicalPath = request.PhysicalPath;
+            //string cacheKey = GetCacheKey(urlPath);
+            //DateTime? lastPublishedDate = CacheAgent.Load(cacheKey) as DateTime?;
 
 
-            if (lastPublishedDate == null)
-            {
-                DateTime lpb = BinaryFactory.FindLastPublishedDate(urlPath);
-                if (lpb != DateTime.MinValue.AddSeconds(1)) // this is the secret code for 'does not exist'
-                {
-                    lastPublishedDate = new DateTime?(lpb);
-                    CacheAgent.Store(cacheKey, "Binary", lastPublishedDate);
-                }
-            }
-            if (lastPublishedDate != null)
-            {
-                if (File.Exists(physicalPath))
-                {
-                    FileInfo fi = new FileInfo(physicalPath);
-                    if (fi.Length > 0)
-                    {
+            //if (lastPublishedDate == null)
+            //{
+            //    DateTime lpb = BinaryFactory.FindLastPublishedDate(urlPath);
+            //    if (lpb != DateTime.MinValue.AddSeconds(1)) // this is the secret code for 'does not exist'
+            //    {
+            //        lastPublishedDate = new DateTime?(lpb);
+            //        CacheAgent.Store(cacheKey, "Binary", lastPublishedDate);
+            //    }
+            //}
+            //if (lastPublishedDate != null)
+            //{
+            //    if (File.Exists(physicalPath))
+            //    {
+            //        FileInfo fi = new FileInfo(physicalPath);
+            //        if (fi.Length > 0)
+            //        {
 
-                        DateTime fileModifiedDate = File.GetLastWriteTime(physicalPath);
-                        if (fileModifiedDate.CompareTo(lastPublishedDate) >= 0)
-                        {
-                            LoggerService.Debug("binary {0} is still up to date, no action required", urlPath);
-                            return true;
-                        }
-                    }
-                }
-            }
+            //            DateTime fileModifiedDate = File.GetLastWriteTime(physicalPath);
+            //            if (fileModifiedDate.CompareTo(lastPublishedDate) >= 0)
+            //            {
+            //                LoggerService.Debug("binary {0} is still up to date, no action required", urlPath);
+            //                return true;
+            //            }
+            //        }
+            //    }
+            //}
 
-            // the normal situation (where a binary is still in Tridion and it is present on the file system already and it is up to date) is now covered
-            // Let's handle the exception situations. 
-            IBinary binary = null;
-            try
-            {
-                BinaryFactory.TryFindBinary(urlPath, out binary);
-            }
-            catch (BinaryNotFoundException)
-            {
-                LoggerService.Debug("Binary with url {0} not found", urlPath);
-                // binary does not exist in Tridion, it should be removed from the local file system too
-                if (File.Exists(physicalPath))
-                {
-                    DeleteFile(physicalPath);
-                }
-                return false;
+            //// the normal situation (where a binary is still in Tridion and it is present on the file system already and it is up to date) is now covered
+            //// Let's handle the exception situations. 
+            //IBinary binary = null;
+            //try
+            //{
+            //    BinaryFactory.TryFindBinary(urlPath, out binary);
+            //}
+            //catch (BinaryNotFoundException)
+            //{
+            //    LoggerService.Debug("Binary with url {0} not found", urlPath);
+            //    // binary does not exist in Tridion, it should be removed from the local file system too
+            //    if (File.Exists(physicalPath))
+            //    {
+            //        DeleteFile(physicalPath);
+            //    }
+            //    return false;
 
-            }
-            return WriteBinaryToFile(binary, physicalPath, dimensions);
+            //}
+            //return WriteBinaryToFile(binary, physicalPath, dimensions);
 
         }
         #endregion

@@ -10,7 +10,7 @@ using DD4T.ViewModels.Reflection;
 using System.Reflection;
 using DD4T.ViewModels;
 using DD4T.ContentModel;
-using DD4T.MVC.ViewModels.XPM;
+using DD4T.Mvc.ViewModels.XPM;
 using System.Web.Mvc;
 
 namespace DD4T.Mvc.ViewModels.XPM
