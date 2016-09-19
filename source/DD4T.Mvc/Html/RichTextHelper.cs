@@ -57,12 +57,30 @@ namespace DD4T.Mvc.Html
                 }
                 else
                 {
-                    // copy child nodes of link so we keep them
-                    foreach (XmlNode child in link.ChildNodes)
-                        link.ParentNode.InsertBefore(child.CloneNode(true), link);
+                    //Try and get a binary url for the tcmUri if one exists
+                    IBinaryFactory bf = DependencyResolver.Current.GetService<IBinaryFactory>();
+                    linkUrl = bf.GetUrlForUri(tcmuri);
+                    if (!string.IsNullOrEmpty(linkUrl))
+                    {
+                        // linkUrl = HttpHelper.AdjustUrlToContext(linkUrl);
+                        // add href
+                        XmlAttribute href = doc.CreateAttribute("xhtml:href");
+                        href.Value = linkUrl;
+                        link.Attributes.Append(href);
 
-                    // remove link node
-                    link.ParentNode.RemoveChild(link);
+                        // remove all xlink attributes
+                        foreach (XmlAttribute xlinkAttr in link.SelectNodes("//@xlink:*", nsmgr))
+                            link.Attributes.Remove(xlinkAttr);
+                    }
+                    else
+                    {
+                        // copy child nodes of link so we keep them
+                        foreach (XmlNode child in link.ChildNodes)
+                            link.ParentNode.InsertBefore(child.CloneNode(true), link);
+
+                        // remove link node
+                        link.ParentNode.RemoveChild(link);
+                    }
                 }
             }
 
