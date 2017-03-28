@@ -3,6 +3,7 @@ using System.Xml;
 using System.Web.Mvc;
 using DD4T.ContentModel.Factories;
 using System;
+using System.Web;
 
 namespace DD4T.Mvc.Html
 {
@@ -36,7 +37,8 @@ namespace DD4T.Mvc.Html
 
             nsmgr.AddNamespace("xhtml", XhtmlNamespaceUri);
             nsmgr.AddNamespace("xlink", XlinkNamespaceUri);
-            doc.LoadXml(string.Format("<xhtmlroot>{0}</xhtmlroot>", value));
+            var encodeValue = HttpUtility.HtmlEncode(value);
+            doc.LoadXml(string.Format("<xhtmlroot>{0}</xhtmlroot>", encodeValue));
             // resolve links which haven't been resolved
             foreach (XmlNode link in doc.SelectNodes("//xhtml:a[@xlink:href[starts-with(string(.),'tcm:')]][@xhtml:href='' or not(@xhtml:href)]", nsmgr))
             {
@@ -57,12 +59,30 @@ namespace DD4T.Mvc.Html
                 }
                 else
                 {
-                    // copy child nodes of link so we keep them
-                    foreach (XmlNode child in link.ChildNodes)
-                        link.ParentNode.InsertBefore(child.CloneNode(true), link);
+                    //Try and get a binary url for the tcmUri if one exists
+                    IBinaryFactory bf = DependencyResolver.Current.GetService<IBinaryFactory>();
+                    linkUrl = bf.GetUrlForUri(tcmuri);
+                    if (!string.IsNullOrEmpty(linkUrl))
+                    {
+                        // linkUrl = HttpHelper.AdjustUrlToContext(linkUrl);
+                        // add href
+                        XmlAttribute href = doc.CreateAttribute("xhtml:href");
+                        href.Value = linkUrl;
+                        link.Attributes.Append(href);
 
-                    // remove link node
-                    link.ParentNode.RemoveChild(link);
+                        // remove all xlink attributes
+                        foreach (XmlAttribute xlinkAttr in link.SelectNodes("//@xlink:*", nsmgr))
+                            link.Attributes.Remove(xlinkAttr);
+                    }
+                    else
+                    {
+                        // copy child nodes of link so we keep them
+                        foreach (XmlNode child in link.ChildNodes)
+                            link.ParentNode.InsertBefore(child.CloneNode(true), link);
+
+                        // remove link node
+                        link.ParentNode.RemoveChild(link);
+                    }
                 }
             }
 
@@ -89,7 +109,7 @@ namespace DD4T.Mvc.Html
                 anchor.InnerText = anchor.Attributes["id"] != null ? anchor.Attributes["id"].Value : "empty";
             }
 
-            return new MvcHtmlString(RemoveNamespaceReferences(doc.DocumentElement.InnerXml));
+            return new MvcHtmlString(HttpUtility.HtmlDecode(RemoveNamespaceReferences(doc.DocumentElement.InnerXml)));
         }
 
         /// <summary>
