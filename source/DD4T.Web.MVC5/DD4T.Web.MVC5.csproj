@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\build\MVC5\bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -28,43 +28,41 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\..\build\MVC5\bin\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DD4T.ContentModel, Version=2.2.2.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.2.7\lib\net45\DD4T.ContentModel.dll</HintPath>
+      <HintPath>..\packages\DD4T.Model.2.2.2\lib\net45\DD4T.ContentModel.dll</HintPath>
     </Reference>
     <Reference Include="DD4T.ContentModel.Contracts, Version=2.2.2.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.2.7\lib\net45\DD4T.ContentModel.Contracts.dll</HintPath>
+      <HintPath>..\packages\DD4T.Model.2.2.2\lib\net45\DD4T.ContentModel.Contracts.dll</HintPath>
     </Reference>
     <Reference Include="DD4T.ContentModel.XmlSerializers, Version=2.2.2.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.2.7\lib\net45\DD4T.ContentModel.XmlSerializers.dll</HintPath>
+      <HintPath>..\packages\DD4T.Model.2.2.2\lib\net45\DD4T.ContentModel.XmlSerializers.dll</HintPath>
     </Reference>
-    <Reference Include="DD4T.Core.Contracts, Version=2.2.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.2.7\lib\net45\DD4T.Core.Contracts.dll</HintPath>
+    <Reference Include="DD4T.Core.Contracts, Version=2.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.2.10\lib\net45\DD4T.Core.Contracts.dll</HintPath>
     </Reference>
-    <Reference Include="DD4T.Factories, Version=2.2.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.2.7\lib\net45\DD4T.Factories.dll</HintPath>
+    <Reference Include="DD4T.Factories, Version=2.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.2.10\lib\net45\DD4T.Factories.dll</HintPath>
     </Reference>
     <Reference Include="DD4T.Serialization, Version=2.2.2.0, Culture=neutral, PublicKeyToken=4450e3c7f68bf872, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.2.7\lib\net45\DD4T.Serialization.dll</HintPath>
+      <HintPath>..\packages\DD4T.Model.2.2.2\lib\net45\DD4T.Serialization.dll</HintPath>
     </Reference>
-    <Reference Include="DD4T.Utils, Version=2.2.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.2.7\lib\net45\DD4T.Utils.dll</HintPath>
+    <Reference Include="DD4T.Utils, Version=2.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.2.10\lib\net45\DD4T.Utils.dll</HintPath>
     </Reference>
-    <Reference Include="DD4T.ViewModels, Version=2.2.7.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\DD4T.Core.2.2.7\lib\net45\DD4T.ViewModels.dll</HintPath>
+    <Reference Include="DD4T.ViewModels, Version=2.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DD4T.Core.2.2.10\lib\net45\DD4T.ViewModels.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -74,27 +72,21 @@
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
-      <Private>False</Private>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
