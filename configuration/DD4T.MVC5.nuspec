@@ -11,8 +11,8 @@
     </releaseNotes>
     <tags>SDLTridion Tridion DD4T MVC MVC5  SDLWeb SDLWEB SDLWeb8</tags>
     <dependencies>
-      <dependency id="DD4T.Core" version="2.2.7" />
-      <dependency id="Microsoft.AspNet.Mvc" version="5.2.3" />
+      <dependency id="DD4T.Core" version="2.2.10" />
+      <dependency id="Microsoft.AspNet.Mvc" version="5.2.7" />
     </dependencies>
   </metadata>
 </package>
