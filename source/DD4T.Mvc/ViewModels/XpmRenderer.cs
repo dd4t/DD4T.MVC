@@ -193,7 +193,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <returns>XPM Markup</returns>
         public HtmlString StartXpmEditingZone()
         {
-            if (model.ModelData is IComponentPresentation)
+            if (model.ModelData is IComponentPresentation && ((IComponentPresentation)model.ModelData).ComponentTemplate != null)
                 return new HtmlString(XpmMarkupService.RenderXpmMarkupForComponent(((IComponentPresentation)model.ModelData)));
             else return null;
         }
