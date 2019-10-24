@@ -15,7 +15,6 @@ namespace DD4T.Web.Binaries
     /// </summary>
     public class BinaryDistributionModule : IHttpModule
     {
-
         private static ILogger _logger;
         private static IDD4TConfiguration _configuration;
         #region IHttpModule
@@ -53,6 +52,10 @@ namespace DD4T.Web.Binaries
             if (!BinaryFileManager.ProcessRequest(request))
             {
                 _logger.Debug("Url {0} not found. Returning 404 Not Found.", urlPath);
+
+                // if the file is not found, rewrite the path to the original value (fixes issue #39)
+                context.RewritePath(request.Path.Replace("/BinaryData", ""));
+
                 response.StatusCode = 404;
                 response.SuppressContent = true;
                 application.CompleteRequest();
@@ -163,7 +166,6 @@ namespace DD4T.Web.Binaries
                 return _isBinaryUrl;
             }
         }
-
         #endregion
     }
 }

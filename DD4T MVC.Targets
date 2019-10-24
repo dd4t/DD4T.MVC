@@ -129,7 +129,7 @@
 		<Zip Files="@(MainPackageFiles)" ZipFileName="$(BuildPackageDirectory)\$(ProductName).$(VersionInfo).zip" WorkingDirectory="$(BuildBinDirectory)" />
 
     	<RemoveDir Directories="$(BuildWorkDirectory)" />
-    	<RemoveDir Directories="$(BuildBinDirectory)" />
+    	<!--RemoveDir Directories="$(BuildBinDirectory)" /-->
     	<RemoveDir Directories="$(BuildNuGetDirectory)" />
 	</Target>
 
