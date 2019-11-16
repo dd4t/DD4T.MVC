@@ -1,6 +1,7 @@
 ﻿using DD4T.Core.Contracts.DependencyInjection;
 using DD4T.Mvc.Html;
 using DD4T.Mvc.ViewModels.XPM;
+using DD4T.MVC.Configuration;
 using System;
 using System.Collections.Generic;
 
@@ -13,6 +14,7 @@ namespace DD4T.Mvc
             var mappings = new Dictionary<Type, Type>();
 
             mappings.Add(typeof(IComponentPresentationRenderer), typeof(DefaultComponentPresentationRenderer));
+            mappings.Add(typeof(IMvcConfiguration), typeof(MvcConfiguration));
             mappings.Add(typeof(IXpmMarkupService), typeof(XpmMarkupService));
 
             return mappings;
