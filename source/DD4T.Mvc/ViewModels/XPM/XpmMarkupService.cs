@@ -8,6 +8,7 @@ using DD4T.Mvc.SiteEdit;
 using DD4T.ContentModel;
 using DD4T.Mvc.ViewModels.XPM;
 using DD4T.ContentModel.Contracts.Configuration;
+using DD4T.MVC.Configuration;
 
 namespace DD4T.Mvc.ViewModels.XPM
 {
@@ -17,12 +18,16 @@ namespace DD4T.Mvc.ViewModels.XPM
     public class XpmMarkupService : IXpmMarkupService
     {
         private readonly IDD4TConfiguration _configuration;
-        public XpmMarkupService(IDD4TConfiguration configuration)
+        private readonly IMvcConfiguration _mvcConfiguration;
+        public XpmMarkupService(IDD4TConfiguration configuration, IMvcConfiguration mvcConfiguration)
         {
             if (configuration == null)
                 throw new ArgumentNullException("configuration");
+            if (mvcConfiguration == null)
+                throw new ArgumentNullException("mvcConfiguration");
 
             _configuration = configuration;
+            _mvcConfiguration = mvcConfiguration;
         }
         public string RenderXpmMarkupForField(IField field, int index = -1)
         {     
@@ -35,10 +40,11 @@ namespace DD4T.Mvc.ViewModels.XPM
         {
             return XPMTags.GenerateSiteEditComponentTag(cp);
         }
-        public string RenderXpmMarkupForPage(IPage page, string url)
+        public string RenderXpmMarkupForPage(IPage page, string contentManagerUrl = null)
         {
-            return XPMTags.GenerateSiteEditPageTag(page, url);
+            return XPMTags.GenerateSiteEditPageTag(page, contentManagerUrl ?? _mvcConfiguration.ContentManagerUrl);
         }
+
 
         public bool IsSiteEditEnabled()
         {
