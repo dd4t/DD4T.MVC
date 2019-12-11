@@ -31,7 +31,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <param name="page">Page</param>
         /// <param name="url">tridion CM url</param>
         /// <returns>XPM Markup</returns>
-        string RenderXpmMarkupForPage(IPage page, string url);
+        string RenderXpmMarkupForPage(IPage page);
         /// <summary>
         /// Determines if Site Edit is enabled
         /// </summary>
