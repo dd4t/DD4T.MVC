@@ -40,10 +40,11 @@ namespace DD4T.Mvc.ViewModels.XPM
         {
             return XPMTags.GenerateSiteEditComponentTag(cp);
         }
-        public string RenderXpmMarkupForPage(IPage page)
+        public string RenderXpmMarkupForPage(IPage page, string contentManagerUrl = null)
         {
-            return XPMTags.GenerateSiteEditPageTag(page, _mvcConfiguration.ContentManagerUrl);
+            return XPMTags.GenerateSiteEditPageTag(page, contentManagerUrl ?? _mvcConfiguration.ContentManagerUrl);
         }
+
 
         public bool IsSiteEditEnabled()
         {
