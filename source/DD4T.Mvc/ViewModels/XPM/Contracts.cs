@@ -24,7 +24,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// </summary>
         /// <param name="cp">Component Presentation</param>
         /// <returns>XPM Markup</returns>
-        string RenderXpmMarkupForComponent(IComponentPresentation cp);
+        string RenderXpmMarkupForComponent(IComponentPresentation cp, IComponentTemplate overrideComponentTemplate = null);
         /// <summary>
         /// Renders the XPM Markup for a Page
         /// </summary>
@@ -105,7 +105,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// </summary>
         /// <param name="model">Model</param>
         /// <returns>XPM Markup</returns>
-        HtmlString StartXpmEditingZone();
+        HtmlString StartXpmEditingZone(IViewModel parentModel = null);
     }
 }
 
