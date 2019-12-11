@@ -191,11 +191,14 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <param name="model">Model</param>
         /// <param name="region">Region</param>
         /// <returns>XPM Markup</returns>
-        public HtmlString StartXpmEditingZone()
+        public HtmlString StartXpmEditingZone(IViewModel parentModel = null)
         {
-            if (model.ModelData is IComponentPresentation && ((IComponentPresentation)model.ModelData).ComponentTemplate != null)
-                return new HtmlString(XpmMarkupService.RenderXpmMarkupForComponent(((IComponentPresentation)model.ModelData)));
-            else return null;
+            IComponentTemplate overrideComponentTemplate = null;
+            if (parentModel != null)
+            {
+                overrideComponentTemplate = ((IComponentPresentation)parentModel.ModelData).ComponentTemplate;
+            }
+            return new HtmlString(XpmMarkupService.RenderXpmMarkupForComponent(((IComponentPresentation)model.ModelData), overrideComponentTemplate));
         }
         #endregion
 

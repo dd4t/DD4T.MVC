@@ -114,13 +114,13 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <param name="model">Model</param>
         /// <param name="region">Region</param>
         /// <returns>XPM Markup</returns>
-        public static HtmlString StartXpmEditingZone(this IViewModel model)
+        public static HtmlString StartXpmEditingZone(this IViewModel model, IViewModel parentModel = null)
         {
             HtmlString result = null;
             if (model.ModelData is IComponentPresentation)
             {
                 var renderer = new XpmRenderer<IViewModel>(model, XpmMarkupService, resolver, reflectionHelper);
-                result = renderer.StartXpmEditingZone();
+                result = renderer.StartXpmEditingZone(parentModel);
             }
             return result;
         }

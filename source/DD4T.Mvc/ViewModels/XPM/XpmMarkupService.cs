@@ -31,9 +31,9 @@ namespace DD4T.Mvc.ViewModels.XPM
             return result ?? string.Empty;
         }
 
-        public string RenderXpmMarkupForComponent(IComponentPresentation cp)
+        public string RenderXpmMarkupForComponent(IComponentPresentation cp, IComponentTemplate overrideComponentTemplate = null)
         {
-            return XPMTags.GenerateSiteEditComponentTag(cp);
+            return XPMTags.GenerateSiteEditComponentTag(cp, overrideComponentTemplate);
         }
         public string RenderXpmMarkupForPage(IPage page, string url)
         {
@@ -129,12 +129,19 @@ namespace DD4T.Mvc.ViewModels.XPM
             /// </summary>
             /// <param name="cp">The componentpresentation to mark.</param>
             /// <returns>string representing the JSON SiteEdit tag.</returns>
-            public static string GenerateSiteEditComponentTag(IComponentPresentation cp)
+            public static string GenerateSiteEditComponentTag(IComponentPresentation cp, IComponentTemplate overrideComponentTemplate = null)
             {
                 // is query based tells us if the dcp was the result of a broker query and the component presentation is not embedded on the page
                 string isQueryBased = cp.IsDynamic ? ", \"IsQueryBased\" : true" : string.Empty;
-                return string.Format(ComponentSeFormat, cp.Component.Id, string.Format("{0:s}", cp.Component.RevisionDate), cp.ComponentTemplate.Id, string.Format("{0:s}", cp.ComponentTemplate.RevisionDate), cp.IsDynamic.ToString().ToLower(), isQueryBased);
 
+                // bug 48: allow developer to override the component template ID and modified date/time
+                if (cp.ComponentTemplate == null && overrideComponentTemplate == null)
+                {
+                    return string.Empty;
+                }
+                string ctId = overrideComponentTemplate == null ? cp.ComponentTemplate.Id : overrideComponentTemplate.Id;
+                DateTime ctModifiedDate = overrideComponentTemplate == null ? cp.ComponentTemplate.RevisionDate : overrideComponentTemplate.RevisionDate;
+                return string.Format(ComponentSeFormat, cp.Component.Id, string.Format("{0:s}", cp.Component.RevisionDate), ctId, string.Format("{0:s}", ctModifiedDate), cp.IsDynamic.ToString().ToLower(), isQueryBased);
             }
 
             /// <summary>
