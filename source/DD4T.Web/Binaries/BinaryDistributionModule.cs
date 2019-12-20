@@ -114,12 +114,8 @@ namespace DD4T.Web.Binaries
             if (!File.Exists(realPath))
             {
                 var dir = Path.GetDirectoryName(realPath);
-                _logger.Debug("Dir path: " + dir);
-                _logger.Debug("Dir path the old way: " + realPath.Substring(0, realPath.LastIndexOf("\\")));
                 try
                 {
-                    //string dir = realPath.Substring(0, realPath.LastIndexOf("\\"));
-
                     if (!Directory.Exists(dir))
                         Directory.CreateDirectory(dir);
                     using (FileStream file = File.Create(realPath))
