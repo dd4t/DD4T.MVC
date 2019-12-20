@@ -4,4 +4,10 @@
 
 
 # DD4T.MVC
-DD4T MVC 
+Support for ASP.NET MVC 4 and 5
+
+## Release notes for version 2.5
+
+- Fixed issue with trailing slash in binaries (44)
+- StartXpmEditingZone now works for linked components (48)
+- Upgraded Newtonsoft.Json to 11.0.2
