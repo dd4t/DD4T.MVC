@@ -22,8 +22,7 @@ namespace DD4T.Mvc.ViewModels.XPM
     /// </summary>
     public static class XpmExtensions
     {
-        private static IDD4TConfiguration configuration = DependencyResolver.Current.GetService<IDD4TConfiguration>();
-        private static IXpmMarkupService xpmMarkupService = new XpmMarkupService(configuration);
+        private static IXpmMarkupService xpmMarkupService = DependencyResolver.Current.GetService<IXpmMarkupService>();
         private static IViewModelResolver resolver = DependencyResolver.Current.GetService<IViewModelResolver>();
         private static IReflectionHelper reflectionHelper = DependencyResolver.Current.GetService<IReflectionHelper>();
         /// <summary>
@@ -114,15 +113,31 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// <param name="model">Model</param>
         /// <param name="region">Region</param>
         /// <returns>XPM Markup</returns>
-        public static HtmlString StartXpmEditingZone(this IViewModel model)
+        public static HtmlString StartXpmEditingZone(this IViewModel model, IViewModel parentModel = null)
         {
             HtmlString result = null;
             if (model.ModelData is IComponentPresentation)
             {
                 var renderer = new XpmRenderer<IViewModel>(model, XpmMarkupService, resolver, reflectionHelper);
-                result = renderer.StartXpmEditingZone();
+                result = renderer.StartXpmEditingZone(parentModel);
             }
             return result;
+        }
+
+
+        /// <summary>
+        /// Add XPM page tag to the web page
+        /// </summary>
+        /// <param name="page"></param>
+        public static MvcHtmlString InsertXpmPageMarkup(this IViewModel page)
+        {
+            if (XpmMarkupService.IsSiteEditEnabled() && page.ModelData != null && typeof(IPage).IsAssignableFrom(page.ModelData.GetType()))
+            {
+                var xpmPageTag = new MvcHtmlString(XpmExtensions.XpmMarkupService.RenderXpmMarkupForPage(
+                   (IPage)page.ModelData));
+                return xpmPageTag;
+            }
+            return MvcHtmlString.Empty;
         }
         #endregion
     }

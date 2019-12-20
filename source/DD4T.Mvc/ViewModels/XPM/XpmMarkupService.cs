@@ -8,6 +8,7 @@ using DD4T.Mvc.SiteEdit;
 using DD4T.ContentModel;
 using DD4T.Mvc.ViewModels.XPM;
 using DD4T.ContentModel.Contracts.Configuration;
+using DD4T.MVC.Configuration;
 
 namespace DD4T.Mvc.ViewModels.XPM
 {
@@ -17,12 +18,16 @@ namespace DD4T.Mvc.ViewModels.XPM
     public class XpmMarkupService : IXpmMarkupService
     {
         private readonly IDD4TConfiguration _configuration;
-        public XpmMarkupService(IDD4TConfiguration configuration)
+        private readonly IMvcConfiguration _mvcConfiguration;
+        public XpmMarkupService(IDD4TConfiguration configuration, IMvcConfiguration mvcConfiguration)
         {
             if (configuration == null)
                 throw new ArgumentNullException("configuration");
+            if (mvcConfiguration == null)
+                throw new ArgumentNullException("mvcConfiguration");
 
             _configuration = configuration;
+            _mvcConfiguration = mvcConfiguration;
         }
         public string RenderXpmMarkupForField(IField field, int index = -1)
         {     
@@ -31,14 +36,15 @@ namespace DD4T.Mvc.ViewModels.XPM
             return result ?? string.Empty;
         }
 
-        public string RenderXpmMarkupForComponent(IComponentPresentation cp)
+        public string RenderXpmMarkupForComponent(IComponentPresentation cp, IComponentTemplate overrideComponentTemplate = null)
         {
-            return XPMTags.GenerateSiteEditComponentTag(cp);
+            return XPMTags.GenerateSiteEditComponentTag(cp, overrideComponentTemplate);
         }
-        public string RenderXpmMarkupForPage(IPage page, string url)
+        public string RenderXpmMarkupForPage(IPage page, string contentManagerUrl = null)
         {
-            return XPMTags.GenerateSiteEditPageTag(page, url);
+            return XPMTags.GenerateSiteEditPageTag(page, contentManagerUrl ?? _mvcConfiguration.ContentManagerUrl);
         }
+
 
         public bool IsSiteEditEnabled()
         {
@@ -129,12 +135,19 @@ namespace DD4T.Mvc.ViewModels.XPM
             /// </summary>
             /// <param name="cp">The componentpresentation to mark.</param>
             /// <returns>string representing the JSON SiteEdit tag.</returns>
-            public static string GenerateSiteEditComponentTag(IComponentPresentation cp)
+            public static string GenerateSiteEditComponentTag(IComponentPresentation cp, IComponentTemplate overrideComponentTemplate = null)
             {
                 // is query based tells us if the dcp was the result of a broker query and the component presentation is not embedded on the page
                 string isQueryBased = cp.IsDynamic ? ", \"IsQueryBased\" : true" : string.Empty;
-                return string.Format(ComponentSeFormat, cp.Component.Id, string.Format("{0:s}", cp.Component.RevisionDate), cp.ComponentTemplate.Id, string.Format("{0:s}", cp.ComponentTemplate.RevisionDate), cp.IsDynamic.ToString().ToLower(), isQueryBased);
 
+                // bug 48: allow developer to override the component template ID and modified date/time
+                if (cp.ComponentTemplate == null && overrideComponentTemplate == null)
+                {
+                    return string.Empty;
+                }
+                string ctId = overrideComponentTemplate == null ? cp.ComponentTemplate.Id : overrideComponentTemplate.Id;
+                DateTime ctModifiedDate = overrideComponentTemplate == null ? cp.ComponentTemplate.RevisionDate : overrideComponentTemplate.RevisionDate;
+                return string.Format(ComponentSeFormat, cp.Component.Id, string.Format("{0:s}", cp.Component.RevisionDate), ctId, string.Format("{0:s}", ctModifiedDate), cp.IsDynamic.ToString().ToLower(), isQueryBased);
             }
 
             /// <summary>

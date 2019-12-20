@@ -24,14 +24,14 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// </summary>
         /// <param name="cp">Component Presentation</param>
         /// <returns>XPM Markup</returns>
-        string RenderXpmMarkupForComponent(IComponentPresentation cp);
+        string RenderXpmMarkupForComponent(IComponentPresentation cp, IComponentTemplate overrideComponentTemplate = null);
         /// <summary>
         /// Renders the XPM Markup for a Page
         /// </summary>
         /// <param name="page">Page</param>
         /// <param name="url">tridion CM url</param>
         /// <returns>XPM Markup</returns>
-        string RenderXpmMarkupForPage(IPage page, string url);
+        string RenderXpmMarkupForPage(IPage page, string contentManagerUrl = null);
         /// <summary>
         /// Determines if Site Edit is enabled
         /// </summary>
@@ -105,7 +105,7 @@ namespace DD4T.Mvc.ViewModels.XPM
         /// </summary>
         /// <param name="model">Model</param>
         /// <returns>XPM Markup</returns>
-        HtmlString StartXpmEditingZone();
+        HtmlString StartXpmEditingZone(IViewModel parentModel = null);
     }
 }
 

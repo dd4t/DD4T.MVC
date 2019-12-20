@@ -104,16 +104,18 @@ namespace DD4T.Web.Binaries
                 return;
             }
 
-            string realPath = request.PhysicalApplicationPath + "BinaryData" + request.Path.Replace("/", "\\"); // request.PhysicalPath;
-            context.RewritePath("/BinaryData" + request.Path);
+            string realPath = request.PhysicalApplicationPath + "BinaryData" + request.Path.Replace('/', Path.DirectorySeparatorChar); // request.PhysicalPath;
+            realPath = realPath.TrimEnd(new[] { Path.DirectorySeparatorChar });
+            if (!request.Path.ToLower().StartsWith("/binarydata"))
+            {
+                context.RewritePath("/BinaryData" + request.Path.TrimEnd('/'));
+            }
 
             if (!File.Exists(realPath))
             {
-                _logger.Debug("Dir path: " + realPath.Substring(0, realPath.LastIndexOf("\\")));
+                var dir = Path.GetDirectoryName(realPath);
                 try
                 {
-                    string dir = realPath.Substring(0, realPath.LastIndexOf("\\"));
-
                     if (!Directory.Exists(dir))
                         Directory.CreateDirectory(dir);
                     using (FileStream file = File.Create(realPath))
