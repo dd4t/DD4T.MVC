@@ -198,7 +198,9 @@ namespace DD4T.Mvc.ViewModels.XPM
             {
                 overrideComponentTemplate = ((IComponentPresentation)parentModel.ModelData).ComponentTemplate;
             }
-            return new HtmlString(XpmMarkupService.RenderXpmMarkupForComponent(((IComponentPresentation)model.ModelData), overrideComponentTemplate));
+            return IsSiteEditEnabled(model) ? 
+                new HtmlString(XpmMarkupService.RenderXpmMarkupForComponent(((IComponentPresentation)model.ModelData), overrideComponentTemplate))
+                : MvcHtmlString.Empty;
         }
         #endregion
 
